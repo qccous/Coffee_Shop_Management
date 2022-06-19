@@ -1,0 +1,42 @@
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.AssemblyReference.cache
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmLogin.resources
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.GenerateResource.cache
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.GeneratedMSBuildEditorConfig.editorconfig
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.AssemblyInfoInputs.cache
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.AssemblyInfo.cs
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.CoreCompileInputs.cache
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.exe
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.deps.json
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.runtimeconfig.json
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.runtimeconfig.dev.json
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.dll
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.pdb
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.dll
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\refint\CoffeeShopManager.dll
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.pdb
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.genruntimeconfig.cache
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\ref\CoffeeShopManager.dll
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmManager.resources
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmAccountInfo.resources
+E:\FPT\Semester 5\PRN211\Final Project\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmAdmin.resources
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.exe
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.deps.json
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.runtimeconfig.json
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.runtimeconfig.dev.json
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.dll
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.pdb
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.AssemblyReference.cache
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmAccountInfo.resources
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmAdmin.resources
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmLogin.resources
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.frmManager.resources
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.GenerateResource.cache
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.AssemblyInfoInputs.cache
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.AssemblyInfo.cs
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.csproj.CoreCompileInputs.cache
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.dll
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\refint\CoffeeShopManager.dll
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.pdb
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.genruntimeconfig.cache
+D:\Hoctapfpt\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\ref\CoffeeShopManager.dll

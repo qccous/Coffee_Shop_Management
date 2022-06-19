@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace CoffeeShopManager
 {
-    public partial class Form1 : Form
+    public partial class frmAdmin : Form
     {
-        public Form1()
+        public frmAdmin()
         {
             InitializeComponent();
         }
-
     }
 }
