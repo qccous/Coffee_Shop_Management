@@ -12,7 +12,7 @@ GO
 
 CREATE TABLE TableCoffee
 (
-    id INT IDENTITY(1, 1) PRIMARY KEY,
+    idTable INT IDENTITY(1, 1) PRIMARY KEY,
     name NVARCHAR(50) NOT NULL
         DEFAULT N'Enter name of table!',
     status NVARCHAR(20) NOT NULL
@@ -35,7 +35,7 @@ GO
 
 CREATE TABLE Category
 (
-    id INT IDENTITY(1, 1) PRIMARY KEY,
+    idCategory INT IDENTITY(1, 1) PRIMARY KEY,
     name NVARCHAR(50) NOT NULL
         DEFAULT N'Enter name of Category!',
 );
@@ -43,22 +43,22 @@ GO
 
 CREATE TABLE Drinks
 (
-    id INT IDENTITY(1, 1) PRIMARY KEY,
+    idDrinks INT IDENTITY(1, 1) PRIMARY KEY,
     name NVARCHAR(50) NOT NULL
         DEFAULT N'Enter name of Drinks!',
     idCategory INT NOT NULL
-        FOREIGN KEY REFERENCES dbo.Category (id),
+        FOREIGN KEY REFERENCES dbo.Category (idCategory),
     price FLOAT NOT NULL
 );
 
 CREATE TABLE Bill
 (
-    id INT IDENTITY(1, 1) PRIMARY KEY,
+    idBill INT IDENTITY(1, 1) PRIMARY KEY,
     timeCheckin DATE NOT NULL
         DEFAULT GETDATE(),
     dateCheckout DATE,
     idTable INT NOT NULL
-        FOREIGN KEY REFERENCES dbo.TableCoffee (id),
+        FOREIGN KEY REFERENCES dbo.TableCoffee (idTable),
     status INT NOT NULL
         DEFAULT 0 --1: paid, 0:unpaid
 );
@@ -66,11 +66,11 @@ GO
 
 CREATE TABLE BillInfo
 (
-    id INT IDENTITY(1, 1) PRIMARY KEY,
+    idBillInfo INT IDENTITY(1, 1) PRIMARY KEY,
     idBill INT NOT NULL
-        FOREIGN KEY REFERENCES dbo.Bill (id),
+        FOREIGN KEY REFERENCES dbo.Bill (idBill),
     idDrinks INT NOT NULL
-        FOREIGN KEY REFERENCES dbo.Drinks (id),
+        FOREIGN KEY REFERENCES dbo.Drinks (idDrinks),
     count INT NOT NULL
         DEFAULT 0
 );
