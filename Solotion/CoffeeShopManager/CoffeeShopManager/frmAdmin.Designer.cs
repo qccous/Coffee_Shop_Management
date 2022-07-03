@@ -72,22 +72,23 @@
             this.btnEditCategory = new System.Windows.Forms.Button();
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.tpTable = new System.Windows.Forms.TabPage();
-            this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.cbTableStatus = new System.Windows.Forms.ComboBox();
+            this.lbTableStatus = new System.Windows.Forms.Label();
             this.txtTableName = new System.Windows.Forms.TextBox();
             this.lbTableName = new System.Windows.Forms.Label();
             this.txtTableID = new System.Windows.Forms.TextBox();
             this.lbTabelID = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvTable = new System.Windows.Forms.DataGridView();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btnViewTable = new System.Windows.Forms.Button();
             this.btnDeleteTable = new System.Windows.Forms.Button();
             this.btnEditTable = new System.Windows.Forms.Button();
             this.btnAddTable = new System.Windows.Forms.Button();
-            this.lbTableStatus = new System.Windows.Forms.Label();
-            this.cbTableStatus = new System.Windows.Forms.ComboBox();
+            this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnResetPassword = new System.Windows.Forms.Button();
             this.cbAccountType = new System.Windows.Forms.ComboBox();
             this.lbAccountType = new System.Windows.Forms.Label();
             this.txtAccountName = new System.Windows.Forms.TextBox();
@@ -95,13 +96,12 @@
             this.txtAccountID = new System.Windows.Forms.TextBox();
             this.lbAccountID = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvAccount = new System.Windows.Forms.DataGridView();
             this.panel14 = new System.Windows.Forms.Panel();
             this.btnViewAccount = new System.Windows.Forms.Button();
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
-            this.btnResetPassword = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -119,14 +119,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
             this.panel10.SuspendLayout();
             this.tpTable.SuspendLayout();
-            this.tpAccount.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.panel12.SuspendLayout();
+            this.tpAccount.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -561,19 +561,6 @@
             this.tpTable.Text = "Bàn";
             this.tpTable.UseVisualStyleBackColor = true;
             // 
-            // tpAccount
-            // 
-            this.tpAccount.Controls.Add(this.panel7);
-            this.tpAccount.Controls.Add(this.panel13);
-            this.tpAccount.Controls.Add(this.panel14);
-            this.tpAccount.Location = new System.Drawing.Point(4, 24);
-            this.tpAccount.Name = "tpAccount";
-            this.tpAccount.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAccount.Size = new System.Drawing.Size(860, 577);
-            this.tpAccount.TabIndex = 4;
-            this.tpAccount.Text = "Tài khoản";
-            this.tpAccount.UseVisualStyleBackColor = true;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.cbTableStatus);
@@ -586,6 +573,24 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(426, 488);
             this.panel9.TabIndex = 10;
+            // 
+            // cbTableStatus
+            // 
+            this.cbTableStatus.FormattingEnabled = true;
+            this.cbTableStatus.Location = new System.Drawing.Point(155, 136);
+            this.cbTableStatus.Name = "cbTableStatus";
+            this.cbTableStatus.Size = new System.Drawing.Size(258, 23);
+            this.cbTableStatus.TabIndex = 8;
+            // 
+            // lbTableStatus
+            // 
+            this.lbTableStatus.AutoSize = true;
+            this.lbTableStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbTableStatus.Location = new System.Drawing.Point(20, 134);
+            this.lbTableStatus.Name = "lbTableStatus";
+            this.lbTableStatus.Size = new System.Drawing.Size(102, 25);
+            this.lbTableStatus.TabIndex = 7;
+            this.lbTableStatus.Text = "Trạng thái";
             // 
             // txtTableName
             // 
@@ -624,20 +629,20 @@
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.dataGridView1);
+            this.panel11.Controls.Add(this.dgvTable);
             this.panel11.Location = new System.Drawing.Point(6, 76);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(416, 488);
             this.panel11.TabIndex = 9;
             // 
-            // dataGridView1
+            // dgvTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(410, 482);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTable.Location = new System.Drawing.Point(3, 3);
+            this.dgvTable.Name = "dgvTable";
+            this.dgvTable.RowTemplate.Height = 25;
+            this.dgvTable.Size = new System.Drawing.Size(410, 482);
+            this.dgvTable.TabIndex = 0;
             // 
             // panel12
             // 
@@ -690,23 +695,18 @@
             this.btnAddTable.Text = "Thêm";
             this.btnAddTable.UseVisualStyleBackColor = true;
             // 
-            // lbTableStatus
+            // tpAccount
             // 
-            this.lbTableStatus.AutoSize = true;
-            this.lbTableStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbTableStatus.Location = new System.Drawing.Point(20, 134);
-            this.lbTableStatus.Name = "lbTableStatus";
-            this.lbTableStatus.Size = new System.Drawing.Size(102, 25);
-            this.lbTableStatus.TabIndex = 7;
-            this.lbTableStatus.Text = "Trạng thái";
-            // 
-            // cbTableStatus
-            // 
-            this.cbTableStatus.FormattingEnabled = true;
-            this.cbTableStatus.Location = new System.Drawing.Point(155, 136);
-            this.cbTableStatus.Name = "cbTableStatus";
-            this.cbTableStatus.Size = new System.Drawing.Size(258, 23);
-            this.cbTableStatus.TabIndex = 8;
+            this.tpAccount.Controls.Add(this.panel7);
+            this.tpAccount.Controls.Add(this.panel13);
+            this.tpAccount.Controls.Add(this.panel14);
+            this.tpAccount.Location = new System.Drawing.Point(4, 24);
+            this.tpAccount.Name = "tpAccount";
+            this.tpAccount.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAccount.Size = new System.Drawing.Size(860, 577);
+            this.tpAccount.TabIndex = 4;
+            this.tpAccount.Text = "Tài khoản";
+            this.tpAccount.UseVisualStyleBackColor = true;
             // 
             // panel7
             // 
@@ -721,6 +721,16 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(426, 488);
             this.panel7.TabIndex = 13;
+            // 
+            // btnResetPassword
+            // 
+            this.btnResetPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnResetPassword.Location = new System.Drawing.Point(308, 188);
+            this.btnResetPassword.Name = "btnResetPassword";
+            this.btnResetPassword.Size = new System.Drawing.Size(95, 59);
+            this.btnResetPassword.TabIndex = 9;
+            this.btnResetPassword.Text = "Đặt lại mật khẩu";
+            this.btnResetPassword.UseVisualStyleBackColor = true;
             // 
             // cbAccountType
             // 
@@ -777,20 +787,20 @@
             // 
             // panel13
             // 
-            this.panel13.Controls.Add(this.dataGridView2);
+            this.panel13.Controls.Add(this.dgvAccount);
             this.panel13.Location = new System.Drawing.Point(6, 76);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(416, 488);
             this.panel13.TabIndex = 12;
             // 
-            // dataGridView2
+            // dgvAccount
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(410, 482);
-            this.dataGridView2.TabIndex = 0;
+            this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccount.Location = new System.Drawing.Point(3, 3);
+            this.dgvAccount.Name = "dgvAccount";
+            this.dgvAccount.RowTemplate.Height = 25;
+            this.dgvAccount.Size = new System.Drawing.Size(410, 482);
+            this.dgvAccount.TabIndex = 0;
             // 
             // panel14
             // 
@@ -843,16 +853,6 @@
             this.btnAddAcount.Text = "Thêm";
             this.btnAddAcount.UseVisualStyleBackColor = true;
             // 
-            // btnResetPassword
-            // 
-            this.btnResetPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnResetPassword.Location = new System.Drawing.Point(308, 188);
-            this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(95, 59);
-            this.btnResetPassword.TabIndex = 9;
-            this.btnResetPassword.Text = "Đặt lại mật khẩu";
-            this.btnResetPassword.UseVisualStyleBackColor = true;
-            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -883,16 +883,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
             this.panel10.ResumeLayout(false);
             this.tpTable.ResumeLayout(false);
-            this.tpAccount.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.panel12.ResumeLayout(false);
+            this.tpAccount.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
             this.panel14.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -951,7 +951,7 @@
         private System.Windows.Forms.TextBox txtTableID;
         private System.Windows.Forms.Label lbTabelID;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvTable;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btnViewTable;
         private System.Windows.Forms.Button btnDeleteTable;
@@ -967,7 +967,7 @@
         private System.Windows.Forms.TextBox txtAccountID;
         private System.Windows.Forms.Label lbAccountID;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvAccount;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Button btnViewAccount;
         private System.Windows.Forms.Button btnDeleteAccount;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeShopManager.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace CoffeeShopManager
         public frmAdmin()
         {
             InitializeComponent();
+            LoadAccountList();
+        }
+        void LoadAccountList()
+        {
+            string query = "Select * from dbo.Account where type = 0";
+            DataProvider provider = new DataProvider();
+            dgvAccount.DataSource = provider.ExecuteQuery(query);
         }
     }
 }
