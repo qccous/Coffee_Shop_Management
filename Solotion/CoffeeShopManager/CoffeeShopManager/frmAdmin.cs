@@ -16,35 +16,8 @@ namespace CoffeeShopManager
         public frmAdmin()
         {
             InitializeComponent();
-            LoadAccountList();
-            LoadDrinkList();
-            LoadCategoryList();
-            LoadTableList();
-        }
-        void LoadTableList()
-        {
-            string query = "select * from TableCoffee";
-
-            dgvTable.DataSource = DataProvider.Instance.ExecuteQuery(query);
 
         }
-        void LoadCategoryList()
-        {
-            string query = "select * from Category";
 
-            dgvCategory.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        }
-        void LoadDrinkList()
-        {
-            string query = "select * from Drinks";
-
-            dgvDrink.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        }
-        void LoadAccountList()
-        {
-            string query = "Select * from dbo.Account where type = 0";
-            
-            dgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        }
     }
 }
