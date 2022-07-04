@@ -31,7 +31,7 @@ namespace CoffeeShopManager
             }
             else
             {
-                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu");
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu");
             }
         }
 

@@ -19,11 +19,9 @@ namespace CoffeeShopManager.DAO
 
         public bool Login(string username, string password)
         {
-            string query = "SELECT * FROM dbo.Account WHERE userName = N'" + username + "' AND passWord =N'" + password +"'";
+            string query = "EXEC User_login @userName , @passWord";
 
-            DataTable result = DataProvider.Instance.ExecuteQuery(query);
-
-
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] {username, password });
 
             return result.Rows.Count > 0;
         }
