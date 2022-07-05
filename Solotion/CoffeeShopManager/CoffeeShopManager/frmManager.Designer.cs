@@ -32,7 +32,11 @@
             this.lstvBill = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnPay = new System.Windows.Forms.Button();
@@ -50,8 +54,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbChangeTable = new System.Windows.Forms.ComboBox();
             this.btnChangeTable = new System.Windows.Forms.Button();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
@@ -88,13 +90,26 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Tên đồ uống";
+            this.columnHeader1.Width = 150;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Số lượng";
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Đơn giá";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Thành tiền";
+            this.columnHeader4.Width = 100;
+            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtTotalPrice);
             this.panel3.Controls.Add(this.nmDiscount);
             this.panel3.Controls.Add(this.btnDiscount);
             this.panel3.Controls.Add(this.btnPay);
@@ -103,9 +118,31 @@
             this.panel3.Size = new System.Drawing.Size(398, 70);
             this.panel3.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(176, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Tổng tiền";
+            // 
+            // txtTotalPrice
+            // 
+            this.txtTotalPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtTotalPrice.ForeColor = System.Drawing.Color.Maroon;
+            this.txtTotalPrice.Location = new System.Drawing.Point(167, 32);
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.ReadOnly = true;
+            this.txtTotalPrice.Size = new System.Drawing.Size(100, 29);
+            this.txtTotalPrice.TabIndex = 6;
+            this.txtTotalPrice.Text = "0";
+            this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // nmDiscount
             // 
-            this.nmDiscount.Location = new System.Drawing.Point(141, 23);
+            this.nmDiscount.Location = new System.Drawing.Point(20, 44);
             this.nmDiscount.Name = "nmDiscount";
             this.nmDiscount.Size = new System.Drawing.Size(115, 23);
             this.nmDiscount.TabIndex = 4;
@@ -114,7 +151,7 @@
             // btnDiscount
             // 
             this.btnDiscount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.btnDiscount.Location = new System.Drawing.Point(17, 19);
+            this.btnDiscount.Location = new System.Drawing.Point(20, 6);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(115, 30);
             this.btnDiscount.TabIndex = 5;
@@ -260,14 +297,6 @@
             this.btnChangeTable.Text = "Chuyển bàn";
             this.btnChangeTable.UseVisualStyleBackColor = true;
             // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Đơn giá";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Thành tiền";
-            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -285,6 +314,7 @@
             this.Text = "Quản lý";
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -321,5 +351,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTotalPrice;
     }
 }
