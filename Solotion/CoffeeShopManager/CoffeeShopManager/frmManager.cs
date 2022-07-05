@@ -26,6 +26,7 @@ namespace CoffeeShopManager
         #region Method
         void loadTable()
         {
+            flbTable.Controls.Clear();
             List<Table> listTable = TableDAO.Instance.loadTableList();
             foreach (Table item in listTable)
             {
@@ -76,6 +77,7 @@ namespace CoffeeShopManager
             CultureInfo culture = new CultureInfo("vi-VN");
             //Thread.CurrentThread.CurrentCulture = culture;
             txtTotalPrice.Text = totalPrice.ToString("c", culture);
+            
         }
         #endregion
 
@@ -136,7 +138,25 @@ namespace CoffeeShopManager
                 BillInfoDAO.Instance.InsertBillInfo(idBill, idDrink, count);
             }
             ShowBill(table.ID);
+            loadTable();
         }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            Table table = lstvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
+            if (idBill != -1)
+            {
+                if (MessageBox.Show("Bạn có muốn thanh toán cho " + table.Name, "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    BillDAO.Instance.Checkout(idBill);
+                    ShowBill(table.ID);
+                    loadTable();
+                }
+            }
+
+        }
+
 
         #endregion
 

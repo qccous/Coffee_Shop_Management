@@ -18,6 +18,12 @@ namespace CoffeeShopManager.DAO
             private set { instance = value; }
         }
         private BillDAO() { }
+
+        public void Checkout(int id)
+        {
+            string query = "UPDATE  dbo.Bill SET status = 1 WHERE idBill = "+id;
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
         public int GetUncheckBillIdByTableId(int id)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Bill WHERE idTable = " + id + " AND status = 0");
@@ -42,7 +48,6 @@ namespace CoffeeShopManager.DAO
             }
             catch
             {
-
                 return 1;
             }
         }
