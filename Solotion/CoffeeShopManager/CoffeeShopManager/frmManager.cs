@@ -28,6 +28,8 @@ namespace CoffeeShopManager
             {
                 Button btn = new Button() { Width = 100, Height = 100 };
                 btn.Text = item.Name + Environment.NewLine + "(" + item.Status + ")";
+                btn.Click += btn_Click;
+                btn.Tag = item;
                 switch (item.Status)
                 {
                     case "Trống":
@@ -40,9 +42,29 @@ namespace CoffeeShopManager
                 flbTable.Controls.Add(btn);
             }
         }
+
+        void ShowBill(int id)
+        {
+            lstvBill.Items.Clear();
+            List<Menu> listMenu = MenuDAO.Instance.GetListMenuByTable(id);
+            foreach (Menu item in listMenu)
+            {
+                ListViewItem lstvItem = new ListViewItem(item.DrinkName.ToString());
+                lstvItem.SubItems.Add(item.Count.ToString());
+                lstvItem.SubItems.Add(item.Price.ToString());
+                lstvItem.SubItems.Add(item.TotalPrice.ToString());
+                lstvBill.Items.Add(lstvItem);
+            }
+        }
         #endregion
 
         #region Event
+        void btn_Click(object sender, EventArgs e)
+        {
+            int tableID = ((sender as Button).Tag as Table).ID;
+            ShowBill(tableID);
+        }
+
         private void itLogout_Click(object sender, EventArgs e)
         {
             this.Close();

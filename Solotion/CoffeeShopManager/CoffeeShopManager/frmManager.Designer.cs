@@ -30,6 +30,8 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstvBill = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
             this.btnDiscount = new System.Windows.Forms.Button();
@@ -48,6 +50,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbChangeTable = new System.Windows.Forms.ComboBox();
             this.btnChangeTable = new System.Windows.Forms.Button();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
@@ -67,12 +71,27 @@
             // 
             // lstvBill
             // 
+            this.lstvBill.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lstvBill.GridLines = true;
             this.lstvBill.HideSelection = false;
             this.lstvBill.Location = new System.Drawing.Point(2, 3);
             this.lstvBill.Name = "lstvBill";
             this.lstvBill.Size = new System.Drawing.Size(500, 394);
             this.lstvBill.TabIndex = 0;
             this.lstvBill.UseCompatibleStateImageBehavior = false;
+            this.lstvBill.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Tên đồ uống";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Số lượng";
             // 
             // panel3
             // 
@@ -142,14 +161,14 @@
             // itPersonalInfo
             // 
             this.itPersonalInfo.Name = "itPersonalInfo";
-            this.itPersonalInfo.Size = new System.Drawing.Size(180, 22);
+            this.itPersonalInfo.Size = new System.Drawing.Size(170, 22);
             this.itPersonalInfo.Text = "Thông tin cá nhân";
             this.itPersonalInfo.Click += new System.EventHandler(this.itPersonalInfo_Click);
             // 
             // itLogout
             // 
             this.itLogout.Name = "itLogout";
-            this.itLogout.Size = new System.Drawing.Size(180, 22);
+            this.itLogout.Size = new System.Drawing.Size(170, 22);
             this.itLogout.Text = "Đăng xuất";
             this.itLogout.Click += new System.EventHandler(this.itLogout_Click);
             // 
@@ -241,6 +260,14 @@
             this.btnChangeTable.Text = "Chuyển bàn";
             this.btnChangeTable.UseVisualStyleBackColor = true;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Đơn giá";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Thành tiền";
+            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -290,5 +317,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbChangeTable;
         private System.Windows.Forms.Button btnChangeTable;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
