@@ -28,5 +28,23 @@ namespace CoffeeShopManager.DAO
             }
             return -1;
         }
+        public void InsertBill(int id)
+        {
+            DataProvider.Instance.ExecuteQuery("EXEC InsertBill @idTable", new object[] { id });
+        }
+
+        public int GetMaxIdBill()
+        {
+
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("SELECT MAX(idBill) FROM dbo.Bill");
+            }
+            catch
+            {
+
+                return 1;
+            }
+        }
     }
 }

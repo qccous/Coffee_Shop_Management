@@ -20,6 +20,7 @@ namespace CoffeeShopManager
         {
             InitializeComponent();
             loadTable();
+            loadCategory();
         }
 
         #region Method
@@ -45,6 +46,19 @@ namespace CoffeeShopManager
             }
         }
 
+        void loadCategory()
+        {
+            List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            cbCategory.DataSource = listCategory;
+            cbCategory.DisplayMember = "name";
+        }
+
+        void loadDrinkbyCategoryId(int id)
+        {
+            List<Drink> listDrink = DrinkDAO.Instance.GetDrinkByCategoryID(id);
+            cbDrink.DataSource = listDrink;
+            cbDrink.DisplayMember = "name";
+        }
         void ShowBill(int id)
         {
             lstvBill.Items.Clear();
@@ -69,7 +83,9 @@ namespace CoffeeShopManager
         void btn_Click(object sender, EventArgs e)
         {
             int tableID = ((sender as Button).Tag as Table).ID;
+            lstvBill.Tag = (sender as Button).Tag;
             ShowBill(tableID);
+
         }
 
         private void itLogout_Click(object sender, EventArgs e)
@@ -90,6 +106,40 @@ namespace CoffeeShopManager
             frmAdmin frmAdmin = new frmAdmin();
             frmAdmin.ShowDialog();
         }
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = 0;
+            ComboBox cb = sender as ComboBox;
+            Category selected = cb.SelectedItem as Category;
+            if (cb.SelectedItem == null)
+            {
+                return;
+            }
+            id = selected.ID;
+            loadDrinkbyCategoryId(id);
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Table table = lstvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
+            int idDrink = (cbDrink.SelectedItem as Drink).ID;
+            int count = (int)nbDrinkCount.Value;
+            if (idBill == -1)
+            {
+                BillDAO.Instance.InsertBill(table.ID);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), idDrink, count);
+            }
+            else
+            {
+                BillInfoDAO.Instance.InsertBillInfo(idBill, idDrink, count);
+            }
+            ShowBill(table.ID);
+        }
+
         #endregion
+
+
     }
 }

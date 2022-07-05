@@ -28,6 +28,9 @@ namespace CoffeeShopManager.DAO
             }
             return listBillInfor;
         }
-
+        public void InsertBillInfo(int idBill, int idDrink, int count)
+        {
+            DataProvider.Instance.ExecuteQuery("InsertBillInfor @idBill , @idDrink , @count", new object[] { idBill, idDrink, count });
+        }
     }
 }
