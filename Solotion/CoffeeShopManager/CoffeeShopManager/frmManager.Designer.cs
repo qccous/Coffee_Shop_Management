@@ -52,8 +52,8 @@
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flbTable = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbChangeTable = new System.Windows.Forms.ComboBox();
             this.btnChangeTable = new System.Windows.Forms.Button();
+            this.cbChangeTable = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
@@ -277,10 +277,20 @@
             // 
             this.panel1.Controls.Add(this.cbChangeTable);
             this.panel1.Controls.Add(this.btnChangeTable);
-            this.panel1.Location = new System.Drawing.Point(28, 115);
+            this.panel1.Location = new System.Drawing.Point(27, 118);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 43);
+            this.panel1.Size = new System.Drawing.Size(499, 40);
             this.panel1.TabIndex = 6;
+            // 
+            // btnChangeTable
+            // 
+            this.btnChangeTable.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnChangeTable.Location = new System.Drawing.Point(10, 3);
+            this.btnChangeTable.Name = "btnChangeTable";
+            this.btnChangeTable.Size = new System.Drawing.Size(133, 34);
+            this.btnChangeTable.TabIndex = 4;
+            this.btnChangeTable.Text = "Chuyển bàn";
+            this.btnChangeTable.UseVisualStyleBackColor = true;
             // 
             // cbChangeTable
             // 
@@ -289,16 +299,6 @@
             this.cbChangeTable.Name = "cbChangeTable";
             this.cbChangeTable.Size = new System.Drawing.Size(257, 23);
             this.cbChangeTable.TabIndex = 4;
-            // 
-            // btnChangeTable
-            // 
-            this.btnChangeTable.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.btnChangeTable.Location = new System.Drawing.Point(9, 6);
-            this.btnChangeTable.Name = "btnChangeTable";
-            this.btnChangeTable.Size = new System.Drawing.Size(200, 30);
-            this.btnChangeTable.TabIndex = 6;
-            this.btnChangeTable.Text = "Chuyển bàn";
-            this.btnChangeTable.UseVisualStyleBackColor = true;
             // 
             // frmManager
             // 
@@ -347,14 +347,14 @@
         private System.Windows.Forms.NumericUpDown nmDiscount;
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnPay;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cbChangeTable;
-        private System.Windows.Forms.Button btnChangeTable;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTotalPrice;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cbChangeTable;
+        private System.Windows.Forms.Button btnChangeTable;
     }
 }

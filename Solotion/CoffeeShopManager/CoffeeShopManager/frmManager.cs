@@ -37,13 +37,14 @@ namespace CoffeeShopManager
                 switch (item.Status)
                 {
                     case "Trống":
-                        btn.BackColor = Color.Brown;
+                        btn.BackColor = Color.Green;
                         break;
                     default:
-                        btn.BackColor = Color.Green;
+                        btn.BackColor = Color.Brown;
                         break;
                 }
                 flbTable.Controls.Add(btn);
+
             }
         }
 
@@ -76,7 +77,7 @@ namespace CoffeeShopManager
             }
             CultureInfo culture = new CultureInfo("vi-VN");
             //Thread.CurrentThread.CurrentCulture = culture;
-            txtTotalPrice.Text = totalPrice.ToString("c", culture);
+            txtTotalPrice.Text = totalPrice.ToString("c1", culture);
             
         }
         #endregion
@@ -145,11 +146,15 @@ namespace CoffeeShopManager
         {
             Table table = lstvBill.Tag as Table;
             int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
+            int discount = (int)nmDiscount.Value;
+            string totalPrice_raw = txtTotalPrice.Text.Split(",")[0];
+            double totalPrice = double.Parse(totalPrice_raw);
+            double finalPrice = totalPrice - ((totalPrice / 100) * discount);
             if (idBill != -1)
             {
-                if (MessageBox.Show("Bạn có muốn thanh toán cho " + table.Name, "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}00đ", table.Name, finalPrice), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    BillDAO.Instance.Checkout(idBill);
+                    BillDAO.Instance.Checkout(idBill, discount);
                     ShowBill(table.ID);
                     loadTable();
                 }

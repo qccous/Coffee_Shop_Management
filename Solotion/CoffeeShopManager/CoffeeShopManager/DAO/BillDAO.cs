@@ -19,9 +19,9 @@ namespace CoffeeShopManager.DAO
         }
         private BillDAO() { }
 
-        public void Checkout(int id)
+        public void Checkout(int id, int discount)
         {
-            string query = "UPDATE  dbo.Bill SET status = 1 WHERE idBill = "+id;
+            string query = "UPDATE  dbo.Bill SET status = 1, " + "discount = " + discount + "WHERE idBill = " + id;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
         public int GetUncheckBillIdByTableId(int id)
