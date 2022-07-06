@@ -156,12 +156,22 @@ namespace CoffeeShopManager
             Table table = lstvBill.Tag as Table;
             int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
             int discount = (int)nmDiscount.Value;
-            string totalPrice_raw = txtTotalPrice.Text.Split(",")[0];
-            double totalPrice = double.Parse(totalPrice_raw);
-            double finalPrice = totalPrice - ((totalPrice / 100) * discount);
+            string price = txtTotalPrice.Text.Split(",")[0];
+            string[] price2 = price.Split(".");
+            string price3 = "";
+            for (int i = 0; i <= price2.Length - 1; i++)
+            {
+                price3 += price2[i];
+            }
+            double totalPrice = Convert.ToDouble(price3);
+            double finalPrice = Convert.ToDouble(totalPrice - ((totalPrice / 100) * discount));
+            NumberFormatInfo numberFormatInfo = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+            numberFormatInfo.NumberDecimalSeparator = ",";
+            numberFormatInfo.NumberGroupSeparator = ".";
+            string text = string.Format(numberFormatInfo, "{0:n}", finalPrice);
             if (idBill != -1)
             {
-                if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}00đ", table.Name, finalPrice), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}đ", table.Name, text), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     BillDAO.Instance.Checkout(idBill, discount);
                     ShowBill(table.ID);
@@ -174,17 +184,17 @@ namespace CoffeeShopManager
         private void btnChangeTable_Click(object sender, EventArgs e)
         {
 
-            int id1 = (lstvBill.Tag as Table).ID;
+            //int id1 = (lstvBill.Tag as Table).ID;
 
-            int id2 = (cbChangeTable.SelectedItem as Table).ID;
-            if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1} ", (lstvBill.Tag as Table).Name, (cbChangeTable.SelectedItem as Table).Name), "Thông báo ", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {
+            //int id2 = (cbChangeTable.SelectedItem as Table).ID;
+            //if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1} ", (lstvBill.Tag as Table).Name, (cbChangeTable.SelectedItem as Table).Name), "Thông báo ", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            //{
 
 
-                TableDAO.Instance.SwitchTable(id1, id2);
+            //    TableDAO.Instance.SwitchTable(id1, id2);
 
-                loadTable();
-            }
+            //    loadTable();
+            //}
         }
 
         #endregion
