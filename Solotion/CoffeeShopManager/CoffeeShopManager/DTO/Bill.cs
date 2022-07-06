@@ -38,6 +38,8 @@ namespace CoffeeShopManager.DTO
             }
 
             this.Status = (int)row["status"];
+
+            if(row["discount"].ToString()!="")
             this.Discount = (int)row["discount"];
         }
         public int ID { get => iD; set => iD = value; }

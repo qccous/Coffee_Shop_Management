@@ -44,6 +44,8 @@ namespace CoffeeShopManager
                         btn.BackColor = Color.Brown;
                         break;
                 }
+
+              
                 flbTable.Controls.Add(btn);
 
             }
@@ -79,7 +81,7 @@ namespace CoffeeShopManager
             CultureInfo culture = new CultureInfo("vi-VN");
             //Thread.CurrentThread.CurrentCulture = culture;
             txtTotalPrice.Text = totalPrice.ToString("c1", culture);
-            
+
         }
 
         void loadComboboxTable(ComboBox cb)
@@ -171,17 +173,17 @@ namespace CoffeeShopManager
 
         private void btnChangeTable_Click(object sender, EventArgs e)
         {
-           
-            int id1 = (lstvBill.Tag as Table).ID; 
+
+            int id1 = (lstvBill.Tag as Table).ID;
 
             int id2 = (cbChangeTable.SelectedItem as Table).ID;
-            if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1} ", (lstvBill.Tag as Table).Name, (cbChangeTable.SelectedItem as Table).Name),"Thông báo ", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1} ", (lstvBill.Tag as Table).Name, (cbChangeTable.SelectedItem as Table).Name), "Thông báo ", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
 
-            
+
                 TableDAO.Instance.SwitchTable(id1, id2);
 
-            loadTable();
+                loadTable();
             }
         }
 
