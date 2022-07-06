@@ -291,6 +291,7 @@
             this.btnChangeTable.TabIndex = 4;
             this.btnChangeTable.Text = "Chuyển bàn";
             this.btnChangeTable.UseVisualStyleBackColor = true;
+            this.btnChangeTable.Click += new System.EventHandler(this.btnChangeTable_Click);
             // 
             // cbChangeTable
             // 
@@ -354,7 +355,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTotalPrice;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cbChangeTable;
         private System.Windows.Forms.Button btnChangeTable;
+        private System.Windows.Forms.ComboBox cbChangeTable;
     }
 }

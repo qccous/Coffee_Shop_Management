@@ -19,7 +19,7 @@ namespace CoffeeShopManager.DAO
         }
         private DataProvider() { }
 
-        private string connectionSTR = "Data Source=.\\sqlexpress;Initial Catalog=CoffeeShopManager;Integrated Security=True";
+        private string connectionSTR = "Data Source=DESKTOP-1O0SKDH;Initial Catalog=CoffeeShopManager;Integrated Security=True";
 
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
