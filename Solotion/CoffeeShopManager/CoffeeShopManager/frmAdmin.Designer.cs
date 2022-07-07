@@ -318,6 +318,7 @@
             this.txtDrinkID.ReadOnly = true;
             this.txtDrinkID.Size = new System.Drawing.Size(258, 23);
             this.txtDrinkID.TabIndex = 4;
+            this.txtDrinkID.TextChanged += new System.EventHandler(this.txtDrinkID_TextChanged);
             // 
             // lbDrinkID
             // 
@@ -339,6 +340,7 @@
             // 
             // dgvDrink
             // 
+            this.dgvDrink.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDrink.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDrink.Location = new System.Drawing.Point(3, 3);
             this.dgvDrink.Name = "dgvDrink";
@@ -392,6 +394,7 @@
             this.btnViewDrink.TabIndex = 9;
             this.btnViewDrink.Text = "Xem";
             this.btnViewDrink.UseVisualStyleBackColor = true;
+            this.btnViewDrink.Click += new System.EventHandler(this.btnViewDrink_Click);
             // 
             // btnDeleteDrink
             // 
@@ -402,6 +405,7 @@
             this.btnDeleteDrink.TabIndex = 8;
             this.btnDeleteDrink.Text = "Xóa";
             this.btnDeleteDrink.UseVisualStyleBackColor = true;
+            this.btnDeleteDrink.Click += new System.EventHandler(this.btnDeleteDrink_Click);
             // 
             // btnEditDrink
             // 
@@ -412,6 +416,7 @@
             this.btnEditDrink.TabIndex = 7;
             this.btnEditDrink.Text = "Sửa";
             this.btnEditDrink.UseVisualStyleBackColor = true;
+            this.btnEditDrink.Click += new System.EventHandler(this.btnEditDrink_Click);
             // 
             // btnAddDrink
             // 
@@ -422,6 +427,7 @@
             this.btnAddDrink.TabIndex = 6;
             this.btnAddDrink.Text = "Thêm";
             this.btnAddDrink.UseVisualStyleBackColor = true;
+            this.btnAddDrink.Click += new System.EventHandler(this.btnAddDrink_Click);
             // 
             // tpCategory
             // 

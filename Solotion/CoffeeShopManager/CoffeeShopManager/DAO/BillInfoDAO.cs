@@ -32,5 +32,10 @@ namespace CoffeeShopManager.DAO
         {
             DataProvider.Instance.ExecuteQuery("InsertBillInfor @idBill , @idDrink , @count", new object[] { idBill, idDrink, count });
         }
+
+        public void DeleteBillInfoByDrinkId(int id)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("Delete FROM dbo.BillInfo WHERE idDrinks=" + id);
+        }
     }
 }

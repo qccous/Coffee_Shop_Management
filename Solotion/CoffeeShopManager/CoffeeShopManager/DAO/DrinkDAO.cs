@@ -20,7 +20,7 @@ namespace CoffeeShopManager.DAO
         public List<Drink> GetDrinkByCategoryID(int id)
         {
             List<Drink> listDrink = new List<Drink>();
-            string query = "SELECT* FROM dbo.Drinks WHERE idCategory = "+id;
+            string query = "SELECT* FROM dbo.Drinks WHERE idCategory = " + id;
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
@@ -29,5 +29,40 @@ namespace CoffeeShopManager.DAO
             }
             return listDrink;
         }
+
+        public List<Drink> GetListDrink()
+        {
+            List<Drink> listDrink = new List<Drink>();
+            string query = "SELECT* FROM dbo.Drinks";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Drink drink = new Drink(item);
+                listDrink.Add(drink);
+            }
+            return listDrink;
+        }
+
+        public Boolean InsertDrink(string name, int idCategory, double price)
+        {
+            string query = string.Format(" INSERT dbo.Drinks(name,idCategory,price)VALUES(N'{0}' , {1} , {2} )", name, idCategory, price);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public Boolean UpdateDrink(int idDrink , string name, int idCategory, double price)
+        {
+            string query = string.Format(" UPDATE dbo.Drinks SET name = N'{0}', idCategory = {1}, price = {2} WHERE idDrinks = {3}", name, idCategory, price, idDrink);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public Boolean DeleteDrink(int idDrink)
+        {
+            BillInfoDAO.Instance.DeleteBillInfoByDrinkId(idDrink);
+            string query = string.Format("  DELETE FROM dbo.Drinks WHERE idDrinks = {0}", idDrink);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
     }
 }

@@ -137,8 +137,43 @@ namespace CoffeeShopManager
         private void itAdmin_Click(object sender, EventArgs e)
         {
             frmAdmin frmAdmin = new frmAdmin();
+            frmAdmin.InsertDrink += frmAdmin_InsertDrink;
+            frmAdmin.DeleteDrink += frmAdmin_DeleteDrink;
+            frmAdmin.UpdateDrink += frmAdmin_UpdateDrink;
             frmAdmin.ShowDialog();
         }
+
+        private void frmAdmin_UpdateDrink(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+
+        }
+
+        private void frmAdmin_DeleteDrink(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+
+            loadTable();
+        }
+
+        private void frmAdmin_InsertDrink(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+
+        }
+
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = 0;
@@ -156,6 +191,11 @@ namespace CoffeeShopManager
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Table table = lstvBill.Tag as Table;
+            if (table == null)
+            {
+                MessageBox.Show("Hãy chọn bàn");
+                return;
+            }
             int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
             int idDrink = (cbDrink.SelectedItem as Drink).ID;
             int count = (int)nbDrinkCount.Value;
