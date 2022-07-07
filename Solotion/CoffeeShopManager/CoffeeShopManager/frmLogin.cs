@@ -1,4 +1,5 @@
 ﻿using CoffeeShopManager.DAO;
+using CoffeeShopManager.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,8 @@ namespace CoffeeShopManager
             string password = txtPassword.Text;
             if (Login(username, password))
             {
-                frmManager frmManager = new frmManager();
+                Account loginAccount = AccountDAO.Instance.GetAccountByUsername(username);
+                frmManager frmManager = new frmManager(loginAccount);
                 this.Hide();
                 frmManager.ShowDialog();
                 this.Show();

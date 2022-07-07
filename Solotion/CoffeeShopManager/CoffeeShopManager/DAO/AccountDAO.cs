@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeShopManager.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace CoffeeShopManager.DAO
 
             return result.Rows.Count > 0;
         }
-
+        public Account GetAccountByUsername(string userName)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Account WHERE userName ='" + userName+"'");
+            foreach (DataRow item in data.Rows)
+            {
+                return new Account(item);
+            }
+            return null;
+        }
     }
 }

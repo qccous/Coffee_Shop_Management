@@ -16,15 +16,36 @@ namespace CoffeeShopManager
 {
     public partial class frmManager : Form
     {
-        public frmManager()
+        private Account loginAccount;
+
+        public Account LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; changeAccountType(loginAccount.Type); }
+        }
+
+        public frmManager(Account acc)
         {
             InitializeComponent();
+            this.LoginAccount = acc;
             loadTable();
             loadCategory();
-       
+
         }
 
         #region Method
+        void changeAccountType(int type)
+        {
+            if (type == 1)
+            {
+                itAdmin.Enabled = true;
+            }
+            else
+            {
+                itAdmin.Enabled = false;
+            }
+        }
+
         void loadTable()
         {
             flbTable.Controls.Clear();
@@ -45,7 +66,7 @@ namespace CoffeeShopManager
                         break;
                 }
 
-              
+
                 flbTable.Controls.Add(btn);
 
             }
@@ -182,6 +203,6 @@ namespace CoffeeShopManager
         }
         #endregion
 
-      
+
     }
 }
