@@ -22,13 +22,18 @@ namespace CoffeeShopManager.DAO
         {
             string query = "EXEC User_login @userName , @passWord";
 
-            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] {username, password });
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { username, password });
 
             return result.Rows.Count > 0;
         }
+        public bool UpdateAccount(string username, string displayName, string password, string newPassword)
+        {
+            int result = DataProvider.Instance.ExecuteNonQuery("exec UpdateAccount @userName , @displayName , @passWord , @newPassword ", new object[] { username, displayName, password, newPassword });
+            return result > 0;
+        }
         public Account GetAccountByUsername(string userName)
         {
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Account WHERE userName ='" + userName+"'");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Account WHERE userName ='" + userName + "'");
             foreach (DataRow item in data.Rows)
             {
                 return new Account(item);

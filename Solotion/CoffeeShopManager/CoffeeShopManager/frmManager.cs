@@ -128,7 +128,7 @@ namespace CoffeeShopManager
 
         private void itPersonalInfo_Click(object sender, EventArgs e)
         {
-            frmAccountInfo frmAccountInfo = new frmAccountInfo();
+            frmAccountInfo frmAccountInfo = new frmAccountInfo(LoginAccount);
 
             frmAccountInfo.ShowDialog();
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoffeeShopManager.DAO;
+using CoffeeShopManager.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,65 @@ namespace CoffeeShopManager
 {
     public partial class frmAccountInfo : Form
     {
-        public frmAccountInfo()
+        private Account loginAccount;
+
+        public Account LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; changeAccount(LoginAccount); }
+        }
+        public frmAccountInfo(Account acc)
         {
             InitializeComponent();
+            LoginAccount = acc;
         }
+
+        #region Method
+        void changeAccount(Account acc)
+        {
+            txtUsername.Text = LoginAccount.UserName;
+            txtDisplayName.Text = LoginAccount.DisplayName;
+        }
+        void updateAccount()
+        {
+            string username = txtUsername.Text;
+            string displayName = txtDisplayName.Text;
+            string password = txtPassword.Text;
+            string newPassword = txtNewPassword.Text;
+            string reEnterPassword = txtReEnter.Text;
+            if (!newPassword.Equals(reEnterPassword))
+            {
+                MessageBox.Show("Mật khẩu mới không trùng khớp!");
+            }
+            else
+            {
+                if (AccountDAO.Instance.UpdateAccount(username,displayName,password,newPassword))
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Hãy điền đúng thông tin");
+                }
+            }
+        }
+        #endregion
+
+        #region Event
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            updateAccount();
+            
+        }
+        #endregion
+
+
+
+
     }
 }

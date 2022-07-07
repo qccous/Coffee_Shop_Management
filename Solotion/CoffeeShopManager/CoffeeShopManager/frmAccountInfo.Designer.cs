@@ -93,7 +93,7 @@
             this.txtDisplayName.Location = new System.Drawing.Point(171, 18);
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(249, 23);
-            this.txtDisplayName.TabIndex = 4;
+            this.txtDisplayName.TabIndex = 1;
             // 
             // lbDisplayName
             // 
@@ -119,7 +119,7 @@
             this.txtPassword.Location = new System.Drawing.Point(171, 18);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(249, 23);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 2;
             // 
             // lbPassword
             // 
@@ -145,7 +145,7 @@
             this.txtNewPassword.Location = new System.Drawing.Point(171, 16);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(249, 23);
-            this.txtNewPassword.TabIndex = 4;
+            this.txtNewPassword.TabIndex = 3;
             // 
             // lbNewPassword
             // 
@@ -189,9 +189,10 @@
             this.btnExit.Location = new System.Drawing.Point(329, 343);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(103, 33);
-            this.btnExit.TabIndex = 9;
+            this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnUpdate
             // 
@@ -199,9 +200,10 @@
             this.btnUpdate.Location = new System.Drawing.Point(183, 343);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(103, 33);
-            this.btnUpdate.TabIndex = 8;
+            this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // frmAccountInfo
             // 

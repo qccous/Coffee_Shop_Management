@@ -54,8 +54,8 @@
             this.txtPassword.Location = new System.Drawing.Point(136, 65);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(249, 23);
-            this.txtPassword.TabIndex = 3;
-            this.txtPassword.Text = "admin";
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.Text = "admin01";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
@@ -63,7 +63,7 @@
             this.txtUsername.Location = new System.Drawing.Point(137, 23);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(249, 23);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 1;
             this.txtUsername.Text = "admin";
             // 
             // lbPassword
@@ -92,7 +92,7 @@
             this.btnLogin.Location = new System.Drawing.Point(148, 128);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(103, 33);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -103,7 +103,7 @@
             this.btnExit.Location = new System.Drawing.Point(294, 128);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(103, 33);
-            this.btnExit.TabIndex = 5;
+            this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
