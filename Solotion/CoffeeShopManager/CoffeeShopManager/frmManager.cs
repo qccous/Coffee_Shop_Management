@@ -21,7 +21,7 @@ namespace CoffeeShopManager
             InitializeComponent();
             loadTable();
             loadCategory();
-            loadComboboxTable(cbChangeTable);
+       
         }
 
         #region Method
@@ -173,32 +173,15 @@ namespace CoffeeShopManager
             {
                 if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}đ", table.Name, text), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    BillDAO.Instance.Checkout(idBill, discount);
+                    BillDAO.Instance.Checkout(idBill, discount, (float)finalPrice);
                     ShowBill(table.ID);
                     loadTable();
                 }
             }
 
         }
-
-        private void btnChangeTable_Click(object sender, EventArgs e)
-        {
-
-            //int id1 = (lstvBill.Tag as Table).ID;
-
-            //int id2 = (cbChangeTable.SelectedItem as Table).ID;
-            //if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1} ", (lstvBill.Tag as Table).Name, (cbChangeTable.SelectedItem as Table).Name), "Thông báo ", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            //{
-
-
-            //    TableDAO.Instance.SwitchTable(id1, id2);
-
-            //    loadTable();
-            //}
-        }
-
         #endregion
 
-
+      
     }
 }

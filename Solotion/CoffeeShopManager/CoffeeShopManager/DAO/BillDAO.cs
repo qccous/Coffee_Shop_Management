@@ -19,9 +19,9 @@ namespace CoffeeShopManager.DAO
         }
         private BillDAO() { }
 
-        public void Checkout(int id, int discount)
+        public void Checkout(int id, int discount, float totalPrice)
         {
-            string query = "UPDATE  dbo.Bill SET status = 1, " + "discount = " + discount + "WHERE idBill = " + id;
+            string query = "UPDATE  dbo.Bill SET dateCheckOut = GETDATE(),status = 1, " + "discount = " + discount + ", totalPrice = " + totalPrice + " WHERE idBill = " + id;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
         public int GetUncheckBillIdByTableId(int id)
@@ -39,6 +39,10 @@ namespace CoffeeShopManager.DAO
             DataProvider.Instance.ExecuteQuery("EXEC InsertBill @idTable", new object[] { id });
         }
 
+        public DataTable GetListBillByDate(DateTime dateCheckin, DateTime dateCheckout)
+        {
+            return DataProvider.Instance.ExecuteQuery(" exec GetListBillByDate @dateCheckin , @dateCheckout", new object[] { dateCheckin, dateCheckout });
+        }
         public int GetMaxIdBill()
         {
 

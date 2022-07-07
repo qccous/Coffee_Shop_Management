@@ -33,7 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbEnd = new System.Windows.Forms.Label();
             this.lbFrom = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearchBill = new System.Windows.Forms.Button();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -159,7 +159,7 @@
             // 
             this.panel2.Controls.Add(this.lbEnd);
             this.panel2.Controls.Add(this.lbFrom);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnSearchBill);
             this.panel2.Controls.Add(this.dtpEndDate);
             this.panel2.Controls.Add(this.dtpFromDate);
             this.panel2.Location = new System.Drawing.Point(6, 6);
@@ -187,15 +187,16 @@
             this.lbFrom.TabIndex = 3;
             this.lbFrom.Text = "Từ";
             // 
-            // button1
+            // btnSearchBill
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(687, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Tìm";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearchBill.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchBill.Location = new System.Drawing.Point(687, 9);
+            this.btnSearchBill.Name = "btnSearchBill";
+            this.btnSearchBill.Size = new System.Drawing.Size(73, 32);
+            this.btnSearchBill.TabIndex = 2;
+            this.btnSearchBill.Text = "Tìm";
+            this.btnSearchBill.UseVisualStyleBackColor = true;
+            this.btnSearchBill.Click += new System.EventHandler(this.btnSearchBill_Click);
             // 
             // dtpEndDate
             // 
@@ -221,6 +222,7 @@
             // 
             // dgvBill
             // 
+            this.dgvBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBill.Location = new System.Drawing.Point(3, 3);
             this.dgvBill.Name = "dgvBill";
@@ -909,7 +911,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbEnd;
         private System.Windows.Forms.Label lbFrom;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearchBill;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
         private System.Windows.Forms.Panel panel1;

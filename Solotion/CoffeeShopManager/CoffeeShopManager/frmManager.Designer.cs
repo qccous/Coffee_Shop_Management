@@ -51,16 +51,12 @@
             this.cbDrink = new System.Windows.Forms.ComboBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flbTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnChangeTable = new System.Windows.Forms.Button();
-            this.cbChangeTable = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nbDrinkCount)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -273,40 +269,11 @@
             this.flbTable.Size = new System.Drawing.Size(398, 447);
             this.flbTable.TabIndex = 5;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.cbChangeTable);
-            this.panel1.Controls.Add(this.btnChangeTable);
-            this.panel1.Location = new System.Drawing.Point(27, 118);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 40);
-            this.panel1.TabIndex = 6;
-            // 
-            // btnChangeTable
-            // 
-            this.btnChangeTable.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnChangeTable.Location = new System.Drawing.Point(10, 3);
-            this.btnChangeTable.Name = "btnChangeTable";
-            this.btnChangeTable.Size = new System.Drawing.Size(133, 34);
-            this.btnChangeTable.TabIndex = 4;
-            this.btnChangeTable.Text = "Chuyển bàn";
-            this.btnChangeTable.UseVisualStyleBackColor = true;
-            this.btnChangeTable.Click += new System.EventHandler(this.btnChangeTable_Click);
-            // 
-            // cbChangeTable
-            // 
-            this.cbChangeTable.FormattingEnabled = true;
-            this.cbChangeTable.Location = new System.Drawing.Point(225, 9);
-            this.cbChangeTable.Name = "cbChangeTable";
-            this.cbChangeTable.Size = new System.Drawing.Size(257, 23);
-            this.cbChangeTable.TabIndex = 4;
-            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 582);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flbTable);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -324,7 +291,6 @@
             this.menuStrip1.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nbDrinkCount)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,8 +320,5 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTotalPrice;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnChangeTable;
-        private System.Windows.Forms.ComboBox cbChangeTable;
     }
 }
