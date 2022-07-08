@@ -19,7 +19,7 @@ namespace CoffeeShopManager
         public Account LoginAccount
         {
             get { return loginAccount; }
-            set { loginAccount = value; changeAccount(LoginAccount); }
+            set { loginAccount = value; changeAccountInfo(LoginAccount); }
         }
         public frmAccountInfo(Account acc)
         {
@@ -28,12 +28,12 @@ namespace CoffeeShopManager
         }
 
         #region Method
-        void changeAccount(Account acc)
+        void changeAccountInfo(Account acc)
         {
             txtUsername.Text = LoginAccount.UserName;
             txtDisplayName.Text = LoginAccount.DisplayName;
         }
-        void updateAccount()
+        void updateAccountInfo()
         {
             string username = txtUsername.Text;
             string displayName = txtDisplayName.Text;
@@ -46,7 +46,7 @@ namespace CoffeeShopManager
             }
             else
             {
-                if (AccountDAO.Instance.UpdateAccount(username,displayName,password,newPassword))
+                if (AccountDAO.Instance.UpdateAccountInfo(username,displayName,password,newPassword))
                 {
                     MessageBox.Show("Cập nhật thành công");
                 }
@@ -66,7 +66,7 @@ namespace CoffeeShopManager
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            updateAccount();
+            updateAccountInfo();
             
         }
         #endregion

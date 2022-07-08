@@ -147,6 +147,8 @@ namespace CoffeeShopManager
             frmAdmin.InsertTable += frmAdmin_InsertTable;
             frmAdmin.DeleteTable += frmAdmin_DeleteTable;
             frmAdmin.UpdateTable += frmAdmin_UpdateTable;
+
+            frmAdmin.loginAccount = LoginAccount;
             frmAdmin.ShowDialog();
         }
 

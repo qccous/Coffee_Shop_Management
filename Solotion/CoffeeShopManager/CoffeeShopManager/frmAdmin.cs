@@ -20,19 +20,13 @@ namespace CoffeeShopManager
         BindingSource categoryList = new BindingSource();
         BindingSource tableList = new BindingSource();
         BindingSource accountlist = new BindingSource();
+        public Account loginAccount;
         public frmAdmin()
         {
             InitializeComponent();
             loadAll();
         }
         #region Method
-
-        List<Drink> SearchDrinkByName(string name)
-        {
-            List<Drink> listdrinks = DrinkDAO.Instance.SearchDrinkByName(name);
-           
-            return listdrinks;
-        }
         void loadAll()
         {
             dgvDrink.DataSource = drinkList;
@@ -47,40 +41,14 @@ namespace CoffeeShopManager
             loadListCategory();
             loadCategoryToComboBox(cbDrinkCategory);
             loadListTable();
-            btnSearchBill.PerformClick();
-           
         }
-
-       
-
-        void LoadAccount()
+        #region Drink
+        List<Drink> SearchDrinkByName(string name)
         {
-            accountlist.DataSource=AccountDAO.Instance.GetListAccount();
-            txtAccountID.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "userName",true, DataSourceUpdateMode.Never));
-            txtAccountName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "displayName", true, DataSourceUpdateMode.Never));
-            txbAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "type", true, DataSourceUpdateMode.Never));
-        }
-        void loadDateTimePickerBill()
-        {
-            DateTime today = DateTime.Now;
-            dtpFromDate.Value = new DateTime(today.Year, today.Month, 1);
-            dtpEndDate.Value = dtpFromDate.Value.AddMonths(1).AddDays(-1);
-        }
+            List<Drink> listdrinks = DrinkDAO.Instance.SearchDrinkByName(name);
 
-        void loadListBillByDate(DateTime dateCheckin, DateTime dateCheckout)
-        {
-            dgvBill.DataSource = BillDAO.Instance.GetListBillByDate(dateCheckin, dateCheckout);
-
+            return listdrinks;
         }
-        void loadListCategory()
-        {
-            categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
-            txtCategoryID.DataBindings.Clear();
-            txtCategoryName.DataBindings.Clear();
-            txtCategoryID.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "ID", true, DataSourceUpdateMode.Never));
-            txtCategoryName.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Name", true, DataSourceUpdateMode.Never));
-        }
-
         void loadListDrink()
         {
             drinkList.DataSource = DrinkDAO.Instance.GetListDrink();
@@ -92,12 +60,106 @@ namespace CoffeeShopManager
             txtDrinkID.DataBindings.Add(new Binding("Text", dgvDrink.DataSource, "ID", true, DataSourceUpdateMode.Never));
             txtPrice.DataBindings.Add(new Binding("Text", dgvDrink.DataSource, "Price", true, DataSourceUpdateMode.Never));
         }
+        #endregion
+
+        #region Category
+        void loadListCategory()
+        {
+            categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+            txtCategoryID.DataBindings.Clear();
+            txtCategoryName.DataBindings.Clear();
+            txtCategoryID.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "ID", true, DataSourceUpdateMode.Never));
+            txtCategoryName.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Name", true, DataSourceUpdateMode.Never));
+        }
         void loadCategoryToComboBox(ComboBox cb)
         {
             cb.DataSource = CategoryDAO.Instance.GetListCategory();
             cb.DisplayMember = "Name";
             cb.Refresh();
         }
+        #endregion
+
+        #region Account
+        void LoadAccount()
+        {
+            accountlist.DataSource = AccountDAO.Instance.GetListAccount();
+            txtAccountUsername.DataBindings.Clear();
+            txtAccountDisplayName.DataBindings.Clear();
+            nbAccountType.DataBindings.Clear();
+            txtAccountUsername.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "userName", true, DataSourceUpdateMode.Never));
+            txtAccountDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "displayName", true, DataSourceUpdateMode.Never));
+            nbAccountType.DataBindings.Add(new Binding("Value", dgvAccount.DataSource, "type", true, DataSourceUpdateMode.Never));
+        }
+        void addAccount(string userName, string displayName, int type)
+        {
+            if (AccountDAO.Instance.InsertAccountAdmin(userName, displayName, type))
+            {
+                MessageBox.Show("Thêm tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Thêm tài khoản thất bại!");
+            }
+            LoadAccount();
+        }
+        void updateAccount(string userName, string displayName, int type)
+        {
+            if (AccountDAO.Instance.UpdateAccountAdmin(userName, displayName, type))
+            {
+                MessageBox.Show("Cập nhật tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật khoản thất bại!");
+            }
+            LoadAccount();
+        }
+        void deleteAccount(string userName)
+        {
+            if (loginAccount.UserName.Equals(userName))
+            {
+                MessageBox.Show("Không thể xóa tài khoản đang được đăng nhập");
+                return;
+            }
+            if (AccountDAO.Instance.DeleteAccountAdmin(userName))
+            {
+                MessageBox.Show("Xóa tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa nhật khoản thất bại!");
+            }
+            LoadAccount();
+        }
+        void resetPassword(string userName)
+        {
+            if (AccountDAO.Instance.resetPassword(userName))
+            {
+                MessageBox.Show("Đặt mật khẩu về mặc định thành công");
+            }
+            else
+            {
+                MessageBox.Show("Đặt mật khẩu về mặc định thất bại!");
+            }
+            LoadAccount();
+        }
+        #endregion
+
+        #region Bill
+        void loadDateTimePickerBill()
+        {
+            DateTime today = DateTime.Now;
+            dtpFromDate.Value = new DateTime(today.Year, today.Month, 1);
+            dtpEndDate.Value = dtpFromDate.Value.AddMonths(1).AddDays(-1);
+        }
+        void loadListBillByDate(DateTime dateCheckin, DateTime dateCheckout)
+        {
+            dgvBill.DataSource = BillDAO.Instance.GetListBillByDate(dateCheckin, dateCheckout);
+
+        }
+        #endregion
+
+        #region Table
         void loadListTable()
         {
             tableList.DataSource = TableDAO.Instance.loadTableList();
@@ -107,16 +169,9 @@ namespace CoffeeShopManager
             txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
         }
         #endregion
+        #endregion
 
         #region Events 
-        private void btnViewAccount_Click(object sender, EventArgs e)
-        {
-            LoadAccount();
-        }
-        private void btnSearchDrink_Click(object sender, EventArgs e)
-        {
-           drinkList.DataSource = SearchDrinkByName(txtSearchDrinkName.Text);
-        }
         #region frmAdmin
         private void frmAdmin_Shown(object sender, EventArgs e)
         {
@@ -221,7 +276,12 @@ namespace CoffeeShopManager
                 }
             }
             catch { }
-            }
+        }
+        private void btnSearchDrink_Click(object sender, EventArgs e)
+        {
+            drinkList.DataSource = SearchDrinkByName(txtSearchDrinkName.Text);
+        }
+
         #endregion
 
         #region Category
@@ -347,7 +407,43 @@ namespace CoffeeShopManager
             loadListTable();
         }
         #endregion
+
+        #region Account
+        private void btnViewAccount_Click(object sender, EventArgs e)
+        {
+            LoadAccount();
+        }
+        private void txbAccountType_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void btnAddAcount_Click(object sender, EventArgs e)
+        {
+            string userName = txtAccountUsername.Text;
+            string displayName = txtAccountDisplayName.Text;
+            int type = Convert.ToInt32(nbAccountType.Value);
+            addAccount(userName, displayName, type);
+        }
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            string userName = txtAccountUsername.Text;
+            string displayName = txtAccountDisplayName.Text;
+            int type = Convert.ToInt32(nbAccountType.Value);
+            updateAccount(userName, displayName, type);
+        }
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            string userName = txtAccountUsername.Text;
+            deleteAccount(userName);
+        }
+        private void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            string userName = txtAccountUsername.Text;
+            resetPassword(userName);
+        }
         #endregion
+        #endregion
+
         #region EventHandler
         #region Category
         private event EventHandler insertCategory;
@@ -421,10 +517,14 @@ namespace CoffeeShopManager
 
 
 
-        #endregion
+
+
+
 
         #endregion
 
-        
+        #endregion
+
+
     }
 }

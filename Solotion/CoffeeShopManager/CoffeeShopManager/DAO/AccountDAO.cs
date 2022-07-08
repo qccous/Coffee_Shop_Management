@@ -26,7 +26,7 @@ namespace CoffeeShopManager.DAO
 
             return result.Rows.Count > 0;
         }
-        public bool UpdateAccount(string username, string displayName, string password, string newPassword)
+        public bool UpdateAccountInfo(string username, string displayName, string password, string newPassword)
         {
             int result = DataProvider.Instance.ExecuteNonQuery("exec UpdateAccount @userName , @displayName , @passWord , @newPassword ", new object[] { username, displayName, password, newPassword });
             return result > 0;
@@ -43,6 +43,31 @@ namespace CoffeeShopManager.DAO
                 return new Account(item);
             }
             return null;
+        }
+        public Boolean InsertAccountAdmin(string userName, string displayName, int type)
+        {
+            string query = string.Format("INSERT dbo.Account(userName , displayName , type)VALUES(N'{0}',N'{1}', {2})", userName, displayName, type);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public Boolean UpdateAccountAdmin(string userName, string displayName, int type)
+        {
+            string query = string.Format("UPDATE dbo.Account SET  displayName=N'{0}', type = {1} where userName =N'{2}'", displayName, type, userName);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public Boolean DeleteAccountAdmin(string userName)
+        {
+            string query = string.Format("DELETE FROM dbo.Account WHERE userName =N'{0}'", userName);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public Boolean resetPassword(string userName)
+        {
+            string query = string.Format("UPDATE dbo.Account SET passWord = N'0' WHERE userName =N'{0}'", userName);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
         }
     }
 }
