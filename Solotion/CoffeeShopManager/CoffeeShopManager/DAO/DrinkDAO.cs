@@ -43,6 +43,11 @@ namespace CoffeeShopManager.DAO
             return listDrink;
         }
 
+        public void DeleteDrinkByCategoryID(int idCategory)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("DELETE FROM dbo.Drinks WHERE idCategory =" + idCategory);
+        }
+
         public Boolean InsertDrink(string name, int idCategory, double price)
         {
             string query = string.Format(" INSERT dbo.Drinks(name,idCategory,price)VALUES(N'{0}' , {1} , {2} )", name, idCategory, price);

@@ -41,5 +41,27 @@ namespace CoffeeShopManager.DAO
             }
             return category;
         }
+
+        public Boolean InsertCategory(string name)
+        {
+            string query = string.Format("INSERT INTO dbo.Category(name) VALUES (N'{0}')", name);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public Boolean UpdateCategory( string name,int idCategory)
+        {
+            string query = string.Format("UPDATE dbo.Category SET name = N'{0}' WHERE idCategory = {1}", name, idCategory);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public Boolean DeleteCategory(int idCategory)
+        {
+            BillInfoDAO.Instance.DeleteBillInfoByCategoryId(idCategory);
+            DrinkDAO.Instance.DeleteDrinkByCategoryID(idCategory);
+            string query = string.Format("DELETE FROM dbo.Category WHERE idCategory = {0}", idCategory);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
     }
 }

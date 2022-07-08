@@ -30,7 +30,6 @@ namespace CoffeeShopManager
             this.LoginAccount = acc;
             loadTable();
             loadCategory();
-
         }
 
         #region Method
@@ -107,8 +106,8 @@ namespace CoffeeShopManager
 
         void loadComboboxTable(ComboBox cb)
         {
-            cb.DataSource = TableDAO.Instance.loadTableList();
-            cb.DisplayMember = "Name";
+            //cb.DataSource = TableDAO.Instance.loadTableList();
+            //cb.DisplayMember = "Name";
         }
         #endregion
 
@@ -140,7 +139,43 @@ namespace CoffeeShopManager
             frmAdmin.InsertDrink += frmAdmin_InsertDrink;
             frmAdmin.DeleteDrink += frmAdmin_DeleteDrink;
             frmAdmin.UpdateDrink += frmAdmin_UpdateDrink;
+            frmAdmin.InsertCategory += frmAdmin_InsertCategory;
+            frmAdmin.DeleteCategory += frmAdmin_DeleteCategory;
+            frmAdmin.UpdateCategory += frmAdmin_UpdateCategory;
             frmAdmin.ShowDialog();
+        }
+
+        private void frmAdmin_UpdateCategory(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+        }
+
+        private void frmAdmin_DeleteCategory(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+        }
+
+        private void frmAdmin_InsertCategory(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
         }
 
         private void frmAdmin_UpdateDrink(object? sender, EventArgs e)

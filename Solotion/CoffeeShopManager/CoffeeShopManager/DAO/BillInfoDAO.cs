@@ -37,5 +37,10 @@ namespace CoffeeShopManager.DAO
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("Delete FROM dbo.BillInfo WHERE idDrinks=" + id);
         }
+
+        public void DeleteBillInfoByCategoryId(int idCategory)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("DELETE bi FROM  dbo.BillInfo bi INNER JOIN dbo.Drinks d ON d.idDrinks = bi.idDrinks INNER JOIN dbo.Category c ON c.idCategory = d.idCategory WHERE c.idCategory = " + idCategory);
+        }
     }
 }
