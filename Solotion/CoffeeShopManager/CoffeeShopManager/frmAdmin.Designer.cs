@@ -371,6 +371,7 @@
             this.btnSearchDrink.TabIndex = 10;
             this.btnSearchDrink.Text = "Tìm";
             this.btnSearchDrink.UseVisualStyleBackColor = true;
+            this.btnSearchDrink.Click += new System.EventHandler(this.btnSearchDrink_Click);
             // 
             // panel3
             // 

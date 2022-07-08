@@ -43,6 +43,18 @@ namespace CoffeeShopManager.DAO
             return listDrink;
         }
 
+        public List<Drink> SearchDrinkByName(string name)
+        {
+            List<Drink> listDrink = new List<Drink>();
+            string query = string.Format("SELECT* FROM dbo.Drinks where dbo.fuConvertToUnsign1(name) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%'", name) ;
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Drink drink = new Drink(item);
+                listDrink.Add(drink);
+            }
+            return listDrink;
+        }
         public void DeleteDrinkByCategoryID(int idCategory)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("DELETE FROM dbo.Drinks WHERE idCategory =" + idCategory);

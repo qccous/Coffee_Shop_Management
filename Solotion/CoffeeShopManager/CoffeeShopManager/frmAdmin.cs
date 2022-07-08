@@ -25,6 +25,13 @@ namespace CoffeeShopManager
             loadAll();
         }
         #region Method
+
+        List<Drink> SearchDrinkByName(string name)
+        {
+            List<Drink> listdrinks = DrinkDAO.Instance.SearchDrinkByName(name);
+           
+            return listdrinks;
+        }
         void loadAll()
         {
             dgvDrink.DataSource = drinkList;
@@ -88,6 +95,10 @@ namespace CoffeeShopManager
         #endregion
 
         #region Events 
+        private void btnSearchDrink_Click(object sender, EventArgs e)
+        {
+           drinkList.DataSource = SearchDrinkByName(txtSearchDrinkName.Text);
+        }
         #region frmAdmin
         private void frmAdmin_Shown(object sender, EventArgs e)
         {
@@ -169,26 +180,30 @@ namespace CoffeeShopManager
         }
         private void txtDrinkID_TextChanged(object sender, EventArgs e)
         {
-            if (dgvDrink.SelectedCells.Count > 0)
+            try
             {
-                int id = (int)dgvDrink.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
-                Category category = CategoryDAO.Instance.GetCategoryByID(id);
-                cbDrinkCategory.Refresh();
-                cbDrinkCategory.SelectedItem = category;
-                int index = -1;
-                int i = 0;
-                foreach (Category item in cbDrinkCategory.Items)
+                if (dgvDrink.SelectedCells.Count > 0)
                 {
-                    if (item.ID == category.ID)
+                    int id = (int)dgvDrink.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+                    Category category = CategoryDAO.Instance.GetCategoryByID(id);
+                    cbDrinkCategory.Refresh();
+                    cbDrinkCategory.SelectedItem = category;
+                    int index = -1;
+                    int i = 0;
+                    foreach (Category item in cbDrinkCategory.Items)
                     {
-                        index = i;
-                        break;
+                        if (item.ID == category.ID)
+                        {
+                            index = i;
+                            break;
+                        }
+                        i++;
                     }
-                    i++;
+                    cbDrinkCategory.SelectedIndex = index;
                 }
-                cbDrinkCategory.SelectedIndex = index;
             }
-        }
+            catch { }
+            }
         #endregion
 
         #region Category
@@ -386,10 +401,11 @@ namespace CoffeeShopManager
 
 
 
-        #endregion
 
         #endregion
 
+        #endregion
 
+   
     }
 }
