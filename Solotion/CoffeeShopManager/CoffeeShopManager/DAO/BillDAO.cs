@@ -55,6 +55,9 @@ namespace CoffeeShopManager.DAO
                 return 1;
             }
         }
-     
+        public void DeleteBillByTableId(int idTable)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery(" DELETE dbo.Bill WHERE idTable = " + idTable);
+        }
     }
 }

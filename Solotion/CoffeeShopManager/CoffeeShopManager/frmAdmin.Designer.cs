@@ -73,8 +73,6 @@
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.cbTableStatus = new System.Windows.Forms.ComboBox();
-            this.lbTableStatus = new System.Windows.Forms.Label();
             this.txtTableName = new System.Windows.Forms.TextBox();
             this.lbTableName = new System.Windows.Forms.Label();
             this.txtTableID = new System.Windows.Forms.TextBox();
@@ -526,6 +524,7 @@
             this.btnViewCategory.TabIndex = 9;
             this.btnViewCategory.Text = "Xem";
             this.btnViewCategory.UseVisualStyleBackColor = true;
+            this.btnViewCategory.Click += new System.EventHandler(this.btnViewCategory_Click);
             // 
             // btnDeleteCategory
             // 
@@ -575,8 +574,6 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.cbTableStatus);
-            this.panel9.Controls.Add(this.lbTableStatus);
             this.panel9.Controls.Add(this.txtTableName);
             this.panel9.Controls.Add(this.lbTableName);
             this.panel9.Controls.Add(this.txtTableID);
@@ -585,24 +582,6 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(426, 488);
             this.panel9.TabIndex = 10;
-            // 
-            // cbTableStatus
-            // 
-            this.cbTableStatus.FormattingEnabled = true;
-            this.cbTableStatus.Location = new System.Drawing.Point(155, 136);
-            this.cbTableStatus.Name = "cbTableStatus";
-            this.cbTableStatus.Size = new System.Drawing.Size(258, 23);
-            this.cbTableStatus.TabIndex = 8;
-            // 
-            // lbTableStatus
-            // 
-            this.lbTableStatus.AutoSize = true;
-            this.lbTableStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbTableStatus.Location = new System.Drawing.Point(20, 134);
-            this.lbTableStatus.Name = "lbTableStatus";
-            this.lbTableStatus.Size = new System.Drawing.Size(102, 25);
-            this.lbTableStatus.TabIndex = 7;
-            this.lbTableStatus.Text = "Trạng thái";
             // 
             // txtTableName
             // 
@@ -676,6 +655,7 @@
             this.btnViewTable.TabIndex = 9;
             this.btnViewTable.Text = "Xem";
             this.btnViewTable.UseVisualStyleBackColor = true;
+            this.btnViewTable.Click += new System.EventHandler(this.btnViewTable_Click);
             // 
             // btnDeleteTable
             // 
@@ -686,6 +666,7 @@
             this.btnDeleteTable.TabIndex = 8;
             this.btnDeleteTable.Text = "Xóa";
             this.btnDeleteTable.UseVisualStyleBackColor = true;
+            this.btnDeleteTable.Click += new System.EventHandler(this.btnDeleteTable_Click);
             // 
             // btnEditTable
             // 
@@ -696,6 +677,7 @@
             this.btnEditTable.TabIndex = 7;
             this.btnEditTable.Text = "Sửa";
             this.btnEditTable.UseVisualStyleBackColor = true;
+            this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
             // 
             // btnAddTable
             // 
@@ -706,6 +688,7 @@
             this.btnAddTable.TabIndex = 6;
             this.btnAddTable.Text = "Thêm";
             this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // tpAccount
             // 
@@ -874,6 +857,7 @@
             this.Name = "frmAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin";
+            this.Shown += new System.EventHandler(this.frmAdmin_Shown);
             this.tabControl.ResumeLayout(false);
             this.tpBill.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -969,8 +953,6 @@
         private System.Windows.Forms.Button btnDeleteTable;
         private System.Windows.Forms.Button btnEditTable;
         private System.Windows.Forms.Button btnAddTable;
-        private System.Windows.Forms.ComboBox cbTableStatus;
-        private System.Windows.Forms.Label lbTableStatus;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ComboBox cbAccountType;
         private System.Windows.Forms.Label lbAccountType;

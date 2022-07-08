@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeShopManager.DAO
 {
-    
+
     public class TableDAO
     {
         private static TableDAO instance;
@@ -34,6 +34,27 @@ namespace CoffeeShopManager.DAO
                 listTable.Add(table);
             }
             return listTable;
+        }
+        public Boolean InsertTable(string nameTable)
+        {
+            string query = string.Format("INSERT INTO dbo.TableCoffee(name,status)VALUES(N'{0}', N'Trống')", nameTable);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public Boolean UpdateTable(int idTable, string nameTable)
+        {
+            string query = string.Format("UPDATE dbo.TableCoffee SET name = N'{0}' WHERE idTable = {1} ", nameTable, idTable);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public Boolean DeleteTable(int idTable)
+        {
+            BillInfoDAO.Instance.DeleteBillInfoByTableID(idTable);
+            BillDAO.Instance.DeleteBillByTableId(idTable);
+            string query = string.Format("DELETE FROM dbo.TableCoffee WHERE idTable = " + idTable);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
         }
     }
 }

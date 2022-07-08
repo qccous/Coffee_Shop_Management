@@ -139,12 +139,18 @@ namespace CoffeeShopManager
             frmAdmin.InsertDrink += frmAdmin_InsertDrink;
             frmAdmin.DeleteDrink += frmAdmin_DeleteDrink;
             frmAdmin.UpdateDrink += frmAdmin_UpdateDrink;
+
             frmAdmin.InsertCategory += frmAdmin_InsertCategory;
             frmAdmin.DeleteCategory += frmAdmin_DeleteCategory;
             frmAdmin.UpdateCategory += frmAdmin_UpdateCategory;
+
+            frmAdmin.InsertTable += frmAdmin_InsertTable;
+            frmAdmin.DeleteTable += frmAdmin_DeleteTable;
+            frmAdmin.UpdateTable += frmAdmin_UpdateTable;
             frmAdmin.ShowDialog();
         }
 
+        #region EventHandle Category
         private void frmAdmin_UpdateCategory(object? sender, EventArgs e)
         {
             loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
@@ -177,7 +183,9 @@ namespace CoffeeShopManager
                 ShowBill((lstvBill.Tag as Table).ID);
             }
         }
+        #endregion
 
+        #region EventHandle Drink
         private void frmAdmin_UpdateDrink(object? sender, EventArgs e)
         {
             loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
@@ -208,7 +216,43 @@ namespace CoffeeShopManager
             }
 
         }
+        #endregion
 
+        #region EventHandle Table
+        private void frmAdmin_UpdateTable(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+        }
+
+        private void frmAdmin_DeleteTable(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+        }
+
+        private void frmAdmin_InsertTable(object? sender, EventArgs e)
+        {
+            loadDrinkbyCategoryId((cbCategory.SelectedItem as Category).ID);
+            loadTable();
+            loadCategory();
+            if (lstvBill.Tag != null)
+            {
+                ShowBill((lstvBill.Tag as Table).ID);
+            }
+        }
+
+        #endregion
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = 0;

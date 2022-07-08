@@ -18,23 +18,26 @@ namespace CoffeeShopManager
     {
         BindingSource drinkList = new BindingSource();
         BindingSource categoryList = new BindingSource();
+        BindingSource tableList = new BindingSource();
         public frmAdmin()
         {
             InitializeComponent();
             loadAll();
-
         }
         #region Method
         void loadAll()
         {
             dgvDrink.DataSource = drinkList;
             dgvCategory.DataSource = categoryList;
+            dgvTable.DataSource = tableList;
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
             loadDateTimePickerBill();
             loadListDrink();
             addDrinkBinding();
             loadListCategory();
             loadCategoryToComboBox(cbDrinkCategory);
+            loadListTable();
+            btnSearchBill.PerformClick();
         }
         void loadDateTimePickerBill()
         {
@@ -74,40 +77,37 @@ namespace CoffeeShopManager
             cb.DisplayMember = "Name";
             cb.Refresh();
         }
+        void loadListTable()
+        {
+            tableList.DataSource = TableDAO.Instance.loadTableList();
+            txtTableID.DataBindings.Clear();
+            txtTableName.DataBindings.Clear();
+            txtTableID.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "ID", true, DataSourceUpdateMode.Never));
+            txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
+        }
         #endregion
 
         #region Events 
+        #region frmAdmin
+        private void frmAdmin_Shown(object sender, EventArgs e)
+        {
+            btnSearchBill.PerformClick();
+        }
+        #endregion
+
+        #region Bill
         private void btnSearchBill_Click(object sender, EventArgs e)
         {
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
         }
+
+        #endregion
+
+        #region Drink
         private void btnViewDrink_Click(object sender, EventArgs e)
         {
             loadListDrink();
         }
-        private void txtDrinkID_TextChanged(object sender, EventArgs e)
-        {
-            if (dgvDrink.SelectedCells.Count > 0)
-            {
-                int id = (int)dgvDrink.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
-                Category category = CategoryDAO.Instance.GetCategoryByID(id);
-                cbDrinkCategory.Refresh();
-                cbDrinkCategory.SelectedItem = category;
-                int index = -1;
-                int i = 0;
-                foreach (Category item in cbDrinkCategory.Items)
-                {
-                    if (item.ID == category.ID)
-                    {
-                        index = i;
-                        break;
-                    }
-                    i++;
-                }
-                cbDrinkCategory.SelectedIndex = index;
-            }
-        }
-
         private void btnAddDrink_Click(object sender, EventArgs e)
         {
             string name = txtDrinkName.Text;
@@ -146,7 +146,7 @@ namespace CoffeeShopManager
             {
                 MessageBox.Show("Có lỗi khi Sửa");
             }
-            
+
             loadCategoryToComboBox(cbDrinkCategory);
         }
         private void btnDeleteDrink_Click(object sender, EventArgs e)
@@ -167,6 +167,31 @@ namespace CoffeeShopManager
             }
             loadCategoryToComboBox(cbDrinkCategory);
         }
+        private void txtDrinkID_TextChanged(object sender, EventArgs e)
+        {
+            if (dgvDrink.SelectedCells.Count > 0)
+            {
+                int id = (int)dgvDrink.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+                Category category = CategoryDAO.Instance.GetCategoryByID(id);
+                cbDrinkCategory.Refresh();
+                cbDrinkCategory.SelectedItem = category;
+                int index = -1;
+                int i = 0;
+                foreach (Category item in cbDrinkCategory.Items)
+                {
+                    if (item.ID == category.ID)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
+                }
+                cbDrinkCategory.SelectedIndex = index;
+            }
+        }
+        #endregion
+
+        #region Category
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
             string name = txtCategoryName.Text;
@@ -222,7 +247,74 @@ namespace CoffeeShopManager
             }
             loadCategoryToComboBox(cbDrinkCategory);
         }
+        private void btnViewCategory_Click(object sender, EventArgs e)
+        {
+            loadListCategory();
+        }
+        #endregion
 
+        #region Table
+        private void btnAddTable_Click(object sender, EventArgs e)
+        {
+            string name = txtTableName.Text;
+            if (TableDAO.Instance.InsertTable(name))
+            {
+                MessageBox.Show("Thêm thành công");
+                loadListCategory();
+                if (insertTable != null)
+                {
+                    insertTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi thêm");
+            }
+            loadListTable();
+        }
+        private void btnEditTable_Click(object sender, EventArgs e)
+        {
+            string name = txtTableName.Text;
+            int idTable = Convert.ToInt32(txtTableID.Text);
+            if (TableDAO.Instance.UpdateTable(idTable, name))
+            {
+                MessageBox.Show("Sửa thành công");
+                loadListCategory();
+                if (updateTable != null)
+                {
+                    updateTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi sửa");
+            }
+            loadListTable();
+        }
+        private void btnDeleteTable_Click(object sender, EventArgs e)
+        {
+            int idTable = Convert.ToInt32(txtTableID.Text);
+            if (TableDAO.Instance.DeleteTable(idTable))
+            {
+                MessageBox.Show("Xóa thành công");
+                loadListCategory();
+                if (deleteTable != null)
+                {
+                    deleteTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi xóa");
+            }
+            loadListTable();
+        }
+        private void btnViewTable_Click(object sender, EventArgs e)
+        {
+            loadListTable();
+        }
+        #endregion
+        #endregion
         #region EventHandler
         #region Category
         private event EventHandler insertCategory;
@@ -268,6 +360,31 @@ namespace CoffeeShopManager
             remove { updateDrink -= value; }
         }
         #endregion
+        #region Table
+        private event EventHandler insertTable;
+        public event EventHandler InsertTable
+        {
+            add { insertTable += value; }
+            remove { insertTable -= value; }
+        }
+
+        private event EventHandler deleteTable;
+        public event EventHandler DeleteTable
+        {
+            add { deleteTable += value; }
+            remove { deleteTable -= value; }
+        }
+
+        private event EventHandler updateTable;
+        public event EventHandler UpdateTable
+        {
+            add { updateTable += value; }
+            remove { updateTable -= value; }
+        }
+
+
+
+
 
         #endregion
 
