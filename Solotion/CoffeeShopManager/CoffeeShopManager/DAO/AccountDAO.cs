@@ -31,6 +31,10 @@ namespace CoffeeShopManager.DAO
             int result = DataProvider.Instance.ExecuteNonQuery("exec UpdateAccount @userName , @displayName , @passWord , @newPassword ", new object[] { username, displayName, password, newPassword });
             return result > 0;
         }
+        public DataTable GetListAccount()
+        {
+            return DataProvider.Instance.ExecuteQuery("select userName,displayName,type from dbo.Account");
+        }
         public Account GetAccountByUsername(string userName)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Account WHERE userName ='" + userName + "'");

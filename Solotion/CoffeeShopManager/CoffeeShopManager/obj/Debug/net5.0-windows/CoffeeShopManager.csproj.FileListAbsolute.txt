@@ -60,3 +60,7 @@ D:\Kỳ 5\PRN211\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager
 D:\Kỳ 5\PRN211\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.pdb
 D:\Kỳ 5\PRN211\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\CoffeeShopManager.genruntimeconfig.cache
 D:\Kỳ 5\PRN211\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\obj\Debug\net5.0-windows\ref\CoffeeShopManager.dll
+D:\HOCTAPFPT\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.exe
+D:\HOCTAPFPT\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\CoffeeShopManager.dll
+D:\HOCTAPFPT\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\runtimes\win-x64\native\sni.dll
+D:\HOCTAPFPT\GitHub\PRN_Project-Team-2\Solotion\CoffeeShopManager\CoffeeShopManager\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

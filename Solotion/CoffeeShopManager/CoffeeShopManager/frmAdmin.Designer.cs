@@ -87,7 +87,6 @@
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnResetPassword = new System.Windows.Forms.Button();
-            this.cbAccountType = new System.Windows.Forms.ComboBox();
             this.lbAccountType = new System.Windows.Forms.Label();
             this.txtAccountName = new System.Windows.Forms.TextBox();
             this.lbAccountName = new System.Windows.Forms.Label();
@@ -100,6 +99,7 @@
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
+            this.txbAccountType = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -706,8 +706,8 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.txbAccountType);
             this.panel7.Controls.Add(this.btnResetPassword);
-            this.panel7.Controls.Add(this.cbAccountType);
             this.panel7.Controls.Add(this.lbAccountType);
             this.panel7.Controls.Add(this.txtAccountName);
             this.panel7.Controls.Add(this.lbAccountName);
@@ -728,23 +728,15 @@
             this.btnResetPassword.Text = "Đặt lại mật khẩu";
             this.btnResetPassword.UseVisualStyleBackColor = true;
             // 
-            // cbAccountType
-            // 
-            this.cbAccountType.FormattingEnabled = true;
-            this.cbAccountType.Location = new System.Drawing.Point(155, 136);
-            this.cbAccountType.Name = "cbAccountType";
-            this.cbAccountType.Size = new System.Drawing.Size(258, 23);
-            this.cbAccountType.TabIndex = 8;
-            // 
             // lbAccountType
             // 
             this.lbAccountType.AutoSize = true;
             this.lbAccountType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbAccountType.Location = new System.Drawing.Point(20, 134);
             this.lbAccountType.Name = "lbAccountType";
-            this.lbAccountType.Size = new System.Drawing.Size(49, 25);
+            this.lbAccountType.Size = new System.Drawing.Size(137, 25);
             this.lbAccountType.TabIndex = 7;
-            this.lbAccountType.Text = "Loại";
+            this.lbAccountType.Text = "Loại tài khoản";
             // 
             // txtAccountName
             // 
@@ -818,6 +810,7 @@
             this.btnViewAccount.TabIndex = 9;
             this.btnViewAccount.Text = "Xem";
             this.btnViewAccount.UseVisualStyleBackColor = true;
+            this.btnViewAccount.Click += new System.EventHandler(this.btnViewAccount_Click);
             // 
             // btnDeleteAccount
             // 
@@ -848,6 +841,13 @@
             this.btnAddAcount.TabIndex = 6;
             this.btnAddAcount.Text = "Thêm";
             this.btnAddAcount.UseVisualStyleBackColor = true;
+            // 
+            // txbAccountType
+            // 
+            this.txbAccountType.Location = new System.Drawing.Point(155, 134);
+            this.txbAccountType.Name = "txbAccountType";
+            this.txbAccountType.Size = new System.Drawing.Size(258, 23);
+            this.txbAccountType.TabIndex = 10;
             // 
             // frmAdmin
             // 
@@ -955,7 +955,6 @@
         private System.Windows.Forms.Button btnEditTable;
         private System.Windows.Forms.Button btnAddTable;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.ComboBox cbAccountType;
         private System.Windows.Forms.Label lbAccountType;
         private System.Windows.Forms.TextBox txtAccountName;
         private System.Windows.Forms.Label lbAccountName;
@@ -969,5 +968,6 @@
         private System.Windows.Forms.Button btnEditAccount;
         private System.Windows.Forms.Button btnAddAcount;
         private System.Windows.Forms.Button btnResetPassword;
+        private System.Windows.Forms.TextBox txbAccountType;
     }
 }

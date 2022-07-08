@@ -19,6 +19,7 @@ namespace CoffeeShopManager
         BindingSource drinkList = new BindingSource();
         BindingSource categoryList = new BindingSource();
         BindingSource tableList = new BindingSource();
+        BindingSource accountlist = new BindingSource();
         public frmAdmin()
         {
             InitializeComponent();
@@ -35,16 +36,29 @@ namespace CoffeeShopManager
         void loadAll()
         {
             dgvDrink.DataSource = drinkList;
+            dgvAccount.DataSource = accountlist;
             dgvCategory.DataSource = categoryList;
             dgvTable.DataSource = tableList;
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
             loadDateTimePickerBill();
             loadListDrink();
+            LoadAccount();
             addDrinkBinding();
             loadListCategory();
             loadCategoryToComboBox(cbDrinkCategory);
             loadListTable();
             btnSearchBill.PerformClick();
+           
+        }
+
+       
+
+        void LoadAccount()
+        {
+            accountlist.DataSource=AccountDAO.Instance.GetListAccount();
+            txtAccountID.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "userName",true, DataSourceUpdateMode.Never));
+            txtAccountName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "displayName", true, DataSourceUpdateMode.Never));
+            txbAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "type", true, DataSourceUpdateMode.Never));
         }
         void loadDateTimePickerBill()
         {
@@ -95,6 +109,10 @@ namespace CoffeeShopManager
         #endregion
 
         #region Events 
+        private void btnViewAccount_Click(object sender, EventArgs e)
+        {
+            LoadAccount();
+        }
         private void btnSearchDrink_Click(object sender, EventArgs e)
         {
            drinkList.DataSource = SearchDrinkByName(txtSearchDrinkName.Text);
@@ -402,10 +420,11 @@ namespace CoffeeShopManager
 
 
 
-        #endregion
 
         #endregion
 
-   
+        #endregion
+
+        
     }
 }
