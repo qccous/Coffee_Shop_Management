@@ -112,6 +112,16 @@ namespace CoffeeShopManager
         #endregion
 
         #region Event
+        private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnPay_Click(this, new EventArgs());
+        }
+
+        private void thêmMónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnAdd_Click(this, new EventArgs());
+        }
+
         void btn_Click(object sender, EventArgs e)
         {
             int tableID = ((sender as Button).Tag as Table).ID;
@@ -322,8 +332,9 @@ namespace CoffeeShopManager
             }
 
         }
+
         #endregion
 
-
+        
     }
 }
