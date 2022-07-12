@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
-    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1484.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
