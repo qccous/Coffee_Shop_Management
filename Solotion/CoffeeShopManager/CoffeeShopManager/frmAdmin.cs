@@ -33,6 +33,8 @@ namespace CoffeeShopManager
             dgvAccount.DataSource = accountlist;
             dgvCategory.DataSource = categoryList;
             dgvTable.DataSource = tableList;
+            CultureInfo culture = new CultureInfo("vi-VN");
+            Thread.CurrentThread.CurrentCulture = culture;
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
             loadDateTimePickerBill();
             loadListDrink();
@@ -205,11 +207,11 @@ namespace CoffeeShopManager
         #region Bill
         private void btnSearchBill_Click(object sender, EventArgs e)
         {
+
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
             double sum = DgvSum(5);
-            dgvBill.Rows[0].Cells[0].Value = sum.ToString()+" VNĐ";
-            CultureInfo culture = new CultureInfo("vi-VN");
-            txtFinalPrice.Text = sum.ToString("c1", culture);
+            dgvBill.Rows[0].Cells[0].Value = sum.ToString("c");
+            dgvBill.Columns[5].DefaultCellStyle.Format = "c";
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
