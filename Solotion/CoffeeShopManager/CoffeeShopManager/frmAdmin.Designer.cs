@@ -248,9 +248,11 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(62, 477);
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExport.ForeColor = System.Drawing.Color.Red;
+            this.btnExport.Location = new System.Drawing.Point(17, 469);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.Size = new System.Drawing.Size(124, 35);
             this.btnExport.TabIndex = 1;
             this.btnExport.Text = "Xuất file";
             this.btnExport.UseVisualStyleBackColor = true;
