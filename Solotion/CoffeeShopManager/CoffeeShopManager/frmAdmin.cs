@@ -92,6 +92,11 @@ namespace CoffeeShopManager
         }
         void addAccount(string userName, string displayName, int type)
         {
+            if (AccountDAO.Instance.checkAccountExist(txtAccountUsername.Text) == 1)
+            {
+                MessageBox.Show("Tài khoản đã tồn tại");
+                return;
+            }
             if (AccountDAO.Instance.InsertAccountAdmin(userName, displayName, type))
             {
                 MessageBox.Show("Thêm tài khoản thành công");
@@ -194,7 +199,13 @@ namespace CoffeeShopManager
         }
         private void btnAddDrink_Click(object sender, EventArgs e)
         {
+
             string name = txtDrinkName.Text;
+            if (DrinkDAO.Instance.checkDrinkExist(name) == 1)
+            {
+                MessageBox.Show("Đồ uống đã tồn tại");
+                return;
+            }
             int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
             double price = Convert.ToDouble(txtPrice.Text);
             if (DrinkDAO.Instance.InsertDrink(name, idCategory, price))
@@ -288,6 +299,11 @@ namespace CoffeeShopManager
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
             string name = txtCategoryName.Text;
+            if (CategoryDAO.Instance.checkCategoryExist(name) == 1)
+            {
+                MessageBox.Show("Danh mục đã tồn tại");
+                return;
+            }
             if (CategoryDAO.Instance.InsertCategory(name))
             {
                 MessageBox.Show("Thêm thành công");
@@ -350,6 +366,11 @@ namespace CoffeeShopManager
         private void btnAddTable_Click(object sender, EventArgs e)
         {
             string name = txtTableName.Text;
+            if (TableDAO.Instance.checkTableExist(name) == 1)
+            {
+                MessageBox.Show("Bàn đã tồn tại");
+                return;
+            }
             if (TableDAO.Instance.InsertTable(name))
             {
                 MessageBox.Show("Thêm thành công");

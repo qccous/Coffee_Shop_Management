@@ -63,5 +63,11 @@ namespace CoffeeShopManager.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
+        public int checkCategoryExist(string categoryName)
+        {
+            string query = string.Format(" SELECT COUNT(*) FROM dbo.Category WHERE name = N'{0}'", categoryName);
+            int result = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return result;
+        }
     }
 }

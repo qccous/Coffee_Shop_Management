@@ -69,5 +69,11 @@ namespace CoffeeShopManager.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
+        public int checkAccountExist(string userName)
+        {
+            string query = string.Format(" SELECT COUNT(*) FROM dbo.Account WHERE userName = N'{0}'", userName);
+            int result = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return result;
+        }
     }
 }

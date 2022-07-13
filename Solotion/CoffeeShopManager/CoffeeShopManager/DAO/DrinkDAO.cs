@@ -46,7 +46,7 @@ namespace CoffeeShopManager.DAO
         public List<Drink> SearchDrinkByName(string name)
         {
             List<Drink> listDrink = new List<Drink>();
-            string query = string.Format("SELECT* FROM dbo.Drinks where dbo.fuConvertToUnsign1(name) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%'", name) ;
+            string query = string.Format("SELECT* FROM dbo.Drinks where dbo.fuConvertToUnsign1(name) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%'", name);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
@@ -66,7 +66,7 @@ namespace CoffeeShopManager.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-        public Boolean UpdateDrink(int idDrink , string name, int idCategory, double price)
+        public Boolean UpdateDrink(int idDrink, string name, int idCategory, double price)
         {
             string query = string.Format(" UPDATE dbo.Drinks SET name = N'{0}', idCategory = {1}, price = {2} WHERE idDrinks = {3}", name, idCategory, price, idDrink);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
@@ -80,6 +80,11 @@ namespace CoffeeShopManager.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-
+        public int checkDrinkExist(string drinkName)
+        {
+            string query = string.Format(" SELECT COUNT(*) FROM dbo.Drinks WHERE name = N'{0}'", drinkName);
+            int result =Convert.ToInt32 (DataProvider.Instance.ExecuteScalar(query));
+            return result;
+        }
     }
 }
