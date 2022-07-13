@@ -189,7 +189,22 @@ namespace CoffeeShopManager
         {
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
         }
-
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            dgvBill.SelectAll();
+            DataObject copydata = dgvBill.GetClipboardContent();
+            if (copydata != null) Clipboard.SetDataObject(copydata);
+            Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+            application.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook workbook;
+            Microsoft.Office.Interop.Excel.Worksheet worksheet;
+            object missdata = System.Reflection.Missing.Value;
+            workbook = application.Workbooks.Add(missdata);
+            worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Range xlr = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, 1];
+            xlr.Select();
+            worksheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+        }
         #endregion
 
         #region Drink
@@ -531,6 +546,7 @@ namespace CoffeeShopManager
             add { updateTable += value; }
             remove { updateTable -= value; }
         }
+
 
 
 
