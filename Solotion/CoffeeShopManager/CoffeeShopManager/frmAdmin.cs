@@ -162,6 +162,16 @@ namespace CoffeeShopManager
             dgvBill.DataSource = BillDAO.Instance.GetListBillByDate(dateCheckin, dateCheckout);
 
         }
+        double DgvSum(int cellIndex)
+        {
+            double sum = 0;
+            for (int i = 0; i < dgvBill.Rows.Count; i++)
+            {
+                sum += Convert.ToDouble(dgvBill.Rows[i].Cells[cellIndex].Value);
+            }
+            return sum;
+        }
+
         #endregion
 
         #region Table
@@ -188,6 +198,9 @@ namespace CoffeeShopManager
         private void btnSearchBill_Click(object sender, EventArgs e)
         {
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
+            double sum = DgvSum(4);
+            CultureInfo culture = new CultureInfo("vi-VN");
+            txtFinalPrice.Text = sum.ToString("c1", culture);
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -558,10 +571,9 @@ namespace CoffeeShopManager
 
 
 
-        #endregion
 
         #endregion
 
-
+        #endregion
     }
 }

@@ -37,6 +37,9 @@
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFinalPrice = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.dgvBill = new System.Windows.Forms.DataGridView();
             this.tpDrink = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -102,8 +105,6 @@
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -217,13 +218,43 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.txtFinalPrice);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.dgvBill);
             this.panel1.Location = new System.Drawing.Point(6, 59);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 512);
             this.panel1.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(595, 477);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 21);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Tổng cuối";
+            // 
+            // txtFinalPrice
+            // 
+            this.txtFinalPrice.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.txtFinalPrice.Location = new System.Drawing.Point(685, 475);
+            this.txtFinalPrice.MaxLength = 99999999;
+            this.txtFinalPrice.Name = "txtFinalPrice";
+            this.txtFinalPrice.Size = new System.Drawing.Size(130, 29);
+            this.txtFinalPrice.TabIndex = 3;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(62, 477);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 1;
+            this.btnExport.Text = "Xuất file";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // dgvBill
             // 
@@ -884,25 +915,6 @@
             this.btnAddAcount.UseVisualStyleBackColor = true;
             this.btnAddAcount.Click += new System.EventHandler(this.btnAddAcount_Click);
             // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(62, 477);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "Xuất file";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(573, 477);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -918,6 +930,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBill)).EndInit();
             this.tpDrink.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -1026,7 +1039,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nbAccountType;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.TextBox txtFinalPrice;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -103,12 +103,6 @@ namespace CoffeeShopManager
             txtTotalPrice.Text = totalPrice.ToString("c1", culture);
 
         }
-
-        void loadComboboxTable(ComboBox cb)
-        {
-            //cb.DataSource = TableDAO.Instance.loadTableList();
-            //cb.DisplayMember = "Name";
-        }
         #endregion
 
         #region Event
