@@ -41,6 +41,7 @@ namespace CoffeeShopManager
             loadListCategory();
             loadCategoryToComboBox(cbDrinkCategory);
             loadListTable();
+            addFinalPriceCol();
         }
         #region Drink
         List<Drink> SearchDrinkByName(string name)
@@ -171,6 +172,13 @@ namespace CoffeeShopManager
             }
             return sum;
         }
+        void addFinalPriceCol()
+        {
+            DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
+            column.DataPropertyName = "finalPrice";
+            column.Name = "Tổng cuối";
+            dgvBill.Columns.Add(column);
+        }
 
         #endregion
 
@@ -198,7 +206,8 @@ namespace CoffeeShopManager
         private void btnSearchBill_Click(object sender, EventArgs e)
         {
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
-            double sum = DgvSum(4);
+            double sum = DgvSum(5);
+            dgvBill.Rows[0].Cells[0].Value = sum.ToString()+" VNĐ";
             CultureInfo culture = new CultureInfo("vi-VN");
             txtFinalPrice.Text = sum.ToString("c1", culture);
         }
