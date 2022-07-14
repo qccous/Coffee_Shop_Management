@@ -86,6 +86,8 @@ namespace CoffeeShopManager
         }
         void ShowBill(int id)
         {
+            CultureInfo culture = new CultureInfo("vi-VN");
+            Thread.CurrentThread.CurrentCulture = culture;
             lstvBill.Items.Clear();
             List<Menu> listMenu = MenuDAO.Instance.GetListMenuByTable(id);
             float totalPrice = 0;
@@ -93,13 +95,12 @@ namespace CoffeeShopManager
             {
                 ListViewItem lstvItem = new ListViewItem(item.DrinkName.ToString());
                 lstvItem.SubItems.Add(item.Count.ToString());
-                lstvItem.SubItems.Add(item.Price.ToString());
-                lstvItem.SubItems.Add(item.TotalPrice.ToString());
+                lstvItem.SubItems.Add(item.Price.ToString("c", culture));
+                lstvItem.SubItems.Add(item.TotalPrice.ToString("c", culture));
                 totalPrice += item.TotalPrice;
                 lstvBill.Items.Add(lstvItem);
             }
-            CultureInfo culture = new CultureInfo("vi-VN");
-            Thread.CurrentThread.CurrentCulture = culture;
+
             txtTotalPrice.Text = totalPrice.ToString("c1", culture);
 
         }
@@ -154,6 +155,82 @@ namespace CoffeeShopManager
 
             frmAdmin.loginAccount = LoginAccount;
             frmAdmin.ShowDialog();
+        }
+
+
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = 0;
+            ComboBox cb = sender as ComboBox;
+            Category selected = cb.SelectedItem as Category;
+            if (cb.SelectedItem == null)
+            {
+                return;
+            }
+            id = selected.ID;
+            loadDrinkbyCategoryId(id);
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Table table = lstvBill.Tag as Table;
+            if (nbDrinkCount.Value < 0)
+            {
+                MessageBox.Show("Không thể bớt món chưa được thêm");
+                return;
+            }
+            if (table == null)
+            {
+                MessageBox.Show("Hãy chọn bàn");
+                return;
+            }
+            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
+            int idDrink = (cbDrink.SelectedItem as Drink).ID;
+            int count = (int)nbDrinkCount.Value;
+            if (idBill == -1)
+            {
+                BillDAO.Instance.InsertBill(table.ID);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), idDrink, count);
+            }
+            else
+            {
+                BillInfoDAO.Instance.InsertBillInfo(idBill, idDrink, count);
+            }
+            ShowBill(table.ID);
+            loadTable();
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+
+            Table table = lstvBill.Tag as Table;
+
+            if (table == null)
+            {
+                MessageBox.Show("Hãy chọn bàn");
+                return;
+            }
+            if (lstvBill.Items.Count == 0)
+            {
+                MessageBox.Show("Bàn này hiện tại chưa có món được thêm");
+                return;
+            }
+            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
+            int discount = (int)nmDiscount.Value;
+            double totalPrice = Convert.ToDouble(txtTotalPrice.Text.Split(",")[0]);
+            double finalPrice = Convert.ToDouble(totalPrice - ((totalPrice / 100) * discount));
+            string text = finalPrice.ToString("c");
+            if (idBill != -1)
+            {
+                if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}", table.Name, text), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    BillDAO.Instance.Checkout(idBill, discount, (float)finalPrice);
+                    ShowBill(table.ID);
+                    loadTable();
+                }
+            }
+
         }
 
         #region EventHandle Category
@@ -259,76 +336,8 @@ namespace CoffeeShopManager
         }
 
         #endregion
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = 0;
-            ComboBox cb = sender as ComboBox;
-            Category selected = cb.SelectedItem as Category;
-            if (cb.SelectedItem == null)
-            {
-                return;
-            }
-            id = selected.ID;
-            loadDrinkbyCategoryId(id);
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Table table = lstvBill.Tag as Table;
-            if (nbDrinkCount.Value <0)
-            {
-                MessageBox.Show("Không thể bớt món chưa được thêm");
-                return;
-            }
-            if (table == null)
-            {
-                MessageBox.Show("Hãy chọn bàn");
-                return;
-            }
-            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
-            int idDrink = (cbDrink.SelectedItem as Drink).ID;
-            int count = (int)nbDrinkCount.Value;
-            if (idBill == -1)
-            {
-                BillDAO.Instance.InsertBill(table.ID);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), idDrink, count);
-            }
-            else
-            {
-                BillInfoDAO.Instance.InsertBillInfo(idBill, idDrink, count);
-            }
-            ShowBill(table.ID);
-            loadTable();
-        }
-
-        private void btnPay_Click(object sender, EventArgs e)
-        {
-            Table table = lstvBill.Tag as Table;
-            if (table == null)
-            {
-                MessageBox.Show("Hãy chọn bàn");
-                return;
-            }
-            int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
-            int discount = (int)nmDiscount.Value;
-            double totalPrice = Convert.ToDouble(txtTotalPrice.Text.Split(",")[0]);
-            double finalPrice = Convert.ToDouble(totalPrice - ((totalPrice / 100) * discount));
-            string text = finalPrice.ToString("c");
-            if (idBill != -1)
-            {
-                if (MessageBox.Show(string.Format("Bạn có muốn thanh toán cho bàn {0}\n Tổng tiền (Đã bao gồm giảm giá)= {1}đ", table.Name, text), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    BillDAO.Instance.Checkout(idBill, discount, (float)finalPrice);
-                    ShowBill(table.ID);
-                    loadTable();
-                }
-            }
-
-        }
-
         #endregion
 
-        
+
     }
 }

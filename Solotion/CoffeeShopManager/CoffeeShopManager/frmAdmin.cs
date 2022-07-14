@@ -56,7 +56,7 @@ namespace CoffeeShopManager
         void loadListDrink()
         {
             drinkList.DataSource = DrinkDAO.Instance.GetListDrink();
-
+            dgvDrink.Columns[3].DefaultCellStyle.Format = "c";
         }
         void addDrinkBinding()
         {
@@ -534,8 +534,7 @@ namespace CoffeeShopManager
         private void btnViewAccount_Click(object sender, EventArgs e)
         {
             LoadAccount();
-        }
-     
+        }  
         private void btnAddAcount_Click(object sender, EventArgs e)
         {
             string userName = txtAccountUsername.Text;
