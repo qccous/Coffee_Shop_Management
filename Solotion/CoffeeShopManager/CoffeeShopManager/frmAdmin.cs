@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -95,6 +96,12 @@ namespace CoffeeShopManager
         }
         void addAccount(string userName, string displayName, int type)
         {
+            bool containsLetter = Regex.IsMatch(userName, @"^[a-zA-Z]+$");
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng 'Tên tài khoản' không hợp lệ");
+                return;
+            }
             if (AccountDAO.Instance.checkAccountExist(txtAccountUsername.Text) == 1)
             {
                 MessageBox.Show("Tài khoản đã tồn tại");
@@ -238,28 +245,55 @@ namespace CoffeeShopManager
         }
         private void btnAddDrink_Click(object sender, EventArgs e)
         {
-
-            string name = txtDrinkName.Text;
+            string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
+            string price1 = txtPrice.Text.Trim().Replace(" ",String.Empty);
+            bool isNumber = double.TryParse(price1, out double result);
+            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
             if (DrinkDAO.Instance.checkDrinkExist(name) == 1)
             {
                 MessageBox.Show("Đồ uống đã tồn tại");
                 return;
             }
-            int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
-            double price = Convert.ToDouble(txtPrice.Text);
-            if (DrinkDAO.Instance.InsertDrink(name, idCategory, price))
+            if (String.IsNullOrEmpty(price1))
             {
-                MessageBox.Show("Thêm thành công");
-                loadListDrink();
-                if (insertDrink != null)
-                {
-                    insertDrink(this, new EventArgs());
-                }
+                MessageBox.Show("Giá không được để trống");
+                return;
+            }
+            if (!isNumber)
+            {
+                MessageBox.Show("Giá phải là số");
+                return;
             }
             else
             {
-                MessageBox.Show("Có lỗi khi thêm");
+                int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
+                double price = Convert.ToDouble(txtPrice.Text);
+                if (DrinkDAO.Instance.InsertDrink(name, idCategory, price))
+                {
+                    MessageBox.Show("Thêm thành công");
+                    loadListDrink();
+                    if (insertDrink != null)
+                    {
+                        insertDrink(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm");
+                }
             }
+
+
         }
         private void btnEditDrink_Click(object sender, EventArgs e)
         {
@@ -337,7 +371,18 @@ namespace CoffeeShopManager
         #region Category
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            string name = txtCategoryName.Text;
+            string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
+            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
             if (CategoryDAO.Instance.checkCategoryExist(name) == 1)
             {
                 MessageBox.Show("Danh mục đã tồn tại");
@@ -360,7 +405,12 @@ namespace CoffeeShopManager
         }
         private void btnEditCategory_Click(object sender, EventArgs e)
         {
-            string name = txtCategoryName.Text;
+            string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
             int idCategory = Convert.ToInt32(txtCategoryID.Text);
             if (CategoryDAO.Instance.UpdateCategory(name, idCategory))
             {
@@ -404,7 +454,19 @@ namespace CoffeeShopManager
         #region Table
         private void btnAddTable_Click(object sender, EventArgs e)
         {
-            string name = txtTableName.Text;
+           
+            string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
+            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
             if (TableDAO.Instance.checkTableExist(name) == 1)
             {
                 MessageBox.Show("Bàn đã tồn tại");
@@ -473,10 +535,7 @@ namespace CoffeeShopManager
         {
             LoadAccount();
         }
-        private void txbAccountType_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+     
         private void btnAddAcount_Click(object sender, EventArgs e)
         {
             string userName = txtAccountUsername.Text;

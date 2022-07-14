@@ -276,6 +276,11 @@ namespace CoffeeShopManager
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Table table = lstvBill.Tag as Table;
+            if (nbDrinkCount.Value <0)
+            {
+                MessageBox.Show("Không thể bớt món chưa được thêm");
+                return;
+            }
             if (table == null)
             {
                 MessageBox.Show("Hãy chọn bàn");
@@ -300,6 +305,11 @@ namespace CoffeeShopManager
         private void btnPay_Click(object sender, EventArgs e)
         {
             Table table = lstvBill.Tag as Table;
+            if (table == null)
+            {
+                MessageBox.Show("Hãy chọn bàn");
+                return;
+            }
             int idBill = BillDAO.Instance.GetUncheckBillIdByTableId(table.ID);
             int discount = (int)nmDiscount.Value;
             double totalPrice = Convert.ToDouble(txtTotalPrice.Text.Split(",")[0]);
