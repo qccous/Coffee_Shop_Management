@@ -46,6 +46,12 @@ namespace CoffeeShopManager
             loadListTable();
             addFinalPriceCol();
         }
+        public static string convertToUnSign(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
         #region Drink
         List<Drink> SearchDrinkByName(string name)
         {
@@ -246,9 +252,9 @@ namespace CoffeeShopManager
         private void btnAddDrink_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
-            string price1 = txtPrice.Text.Trim().Replace(" ",String.Empty);
+            string price1 = txtPrice.Text.Trim().Replace(" ", String.Empty);
             bool isNumber = double.TryParse(price1, out double result);
-            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
             if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Tên không được để trống");
@@ -276,62 +282,102 @@ namespace CoffeeShopManager
             }
             else
             {
-                int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
-                double price = Convert.ToDouble(txtPrice.Text);
-                if (DrinkDAO.Instance.InsertDrink(name, idCategory, price))
+                if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm món '{0}' vào danh mục '{1}'", name, cbDrinkCategory.GetItemText(this.cbDrinkCategory.SelectedItem)), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    MessageBox.Show("Thêm thành công");
-                    loadListDrink();
-                    if (insertDrink != null)
+                    int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
+                    double price = Convert.ToDouble(txtPrice.Text);
+                    if (DrinkDAO.Instance.InsertDrink(name, idCategory, price))
                     {
-                        insertDrink(this, new EventArgs());
+                        MessageBox.Show("Thêm thành công");
+                        loadListDrink();
+                        if (insertDrink != null)
+                        {
+                            insertDrink(this, new EventArgs());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi khi thêm");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Có lỗi khi thêm");
-                }
             }
-
-
         }
         private void btnEditDrink_Click(object sender, EventArgs e)
         {
-            string name = txtDrinkName.Text;
-            int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
-            double price = Convert.ToDouble(txtPrice.Text);
-            int idDrink = Convert.ToInt32(txtDrinkID.Text);
-            if (DrinkDAO.Instance.UpdateDrink(idDrink, name, idCategory, price))
+            string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
+            string price1 = txtPrice.Text.Trim().Replace(" ", String.Empty);
+            bool isNumber = double.TryParse(price1, out double result);
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            if (String.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Sửa thành công");
-                loadListDrink();
-                if (insertDrink != null)
-                {
-                    insertDrink(this, new EventArgs());
-                }
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
+            if (DrinkDAO.Instance.checkDrinkExist(name) == 1)
+            {
+                MessageBox.Show("Đồ uống đã tồn tại");
+                return;
+            }
+            if (String.IsNullOrEmpty(price1))
+            {
+                MessageBox.Show("Giá không được để trống");
+                return;
+            }
+            if (!isNumber)
+            {
+                MessageBox.Show("Giá phải là số");
+                return;
             }
             else
             {
-                MessageBox.Show("Có lỗi khi Sửa");
+                if (MessageBox.Show(string.Format("Bạn có thực sự muốn sửa tên món thành '{0}' vào danh mục '{1}'", name, cbDrinkCategory.GetItemText(this.cbDrinkCategory.SelectedItem)), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    int idCategory = (cbDrinkCategory.SelectedItem as Category).ID;
+                    double price = Convert.ToDouble(txtPrice.Text);
+                    int idDrink = Convert.ToInt32(txtDrinkID.Text);
+                    if (DrinkDAO.Instance.UpdateDrink(idDrink, name, idCategory, price))
+                    {
+                        MessageBox.Show("Sửa thành công");
+                        loadListDrink();
+                        if (insertDrink != null)
+                        {
+                            insertDrink(this, new EventArgs());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi khi Sửa");
+                    }
+                }
             }
+
 
             loadCategoryToComboBox(cbDrinkCategory);
         }
         private void btnDeleteDrink_Click(object sender, EventArgs e)
         {
-            int idDrink = Convert.ToInt32(txtDrinkID.Text);
-            if (DrinkDAO.Instance.DeleteDrink(idDrink))
+            string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn xóa món '{0}' tại danh mục '{1}'", name, cbDrinkCategory.GetItemText(this.cbDrinkCategory.SelectedItem)), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Xóa thành công");
-                loadListDrink();
-                if (deleteDrink != null)
+                int idDrink = Convert.ToInt32(txtDrinkID.Text);
+                if (DrinkDAO.Instance.DeleteDrink(idDrink))
                 {
-                    deleteDrink(this, new EventArgs());
+                    MessageBox.Show("Xóa thành công");
+                    loadListDrink();
+                    if (deleteDrink != null)
+                    {
+                        deleteDrink(this, new EventArgs());
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi khi xóa");
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa");
+                }
             }
             loadCategoryToComboBox(cbDrinkCategory);
         }
@@ -372,7 +418,7 @@ namespace CoffeeShopManager
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -388,60 +434,82 @@ namespace CoffeeShopManager
                 MessageBox.Show("Danh mục đã tồn tại");
                 return;
             }
-            if (CategoryDAO.Instance.InsertCategory(name))
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm danh mục '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Thêm thành công");
-                loadListCategory();
-                if (insertCategory != null)
+                if (CategoryDAO.Instance.InsertCategory(name))
                 {
-                    insertCategory(this, new EventArgs());
+                    MessageBox.Show("Thêm thành công");
+                    loadListCategory();
+                    if (insertCategory != null)
+                    {
+                        insertCategory(this, new EventArgs());
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm");
+                }
+                loadCategoryToComboBox(cbDrinkCategory);
             }
-            else
-            {
-                MessageBox.Show("Có lỗi khi thêm");
-            }
-            loadCategoryToComboBox(cbDrinkCategory);
+
         }
         private void btnEditCategory_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
             if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Tên không được để trống");
                 return;
             }
-            int idCategory = Convert.ToInt32(txtCategoryID.Text);
-            if (CategoryDAO.Instance.UpdateCategory(name, idCategory))
+            if (CategoryDAO.Instance.checkCategoryExist(name) == 1)
             {
-                MessageBox.Show("Sửa thành công");
-                loadListCategory();
-                if (updateCategory != null)
-                {
-                    updateCategory(this, new EventArgs());
-                }
+                MessageBox.Show("Danh mục đã tồn tại");
+                return;
             }
-            else
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn sửa tên danh mục thành '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Có lỗi khi Sửa");
+                int idCategory = Convert.ToInt32(txtCategoryID.Text);
+                if (CategoryDAO.Instance.UpdateCategory(name, idCategory))
+                {
+                    MessageBox.Show("Sửa thành công");
+                    loadListCategory();
+                    if (updateCategory != null)
+                    {
+                        updateCategory(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi Sửa");
+                }
             }
             loadCategoryToComboBox(cbDrinkCategory);
         }
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
-            int idCategory = Convert.ToInt32(txtCategoryID.Text);
-            if (CategoryDAO.Instance.DeleteCategory(idCategory))
+            string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn xóa danh mục '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Xóa thành công");
-                loadListCategory();
-                if (deleteCategory != null)
+                int idCategory = Convert.ToInt32(txtCategoryID.Text);
+                if (CategoryDAO.Instance.DeleteCategory(idCategory))
                 {
-                    deleteCategory(this, new EventArgs());
+                    MessageBox.Show("Xóa thành công");
+                    loadListCategory();
+                    if (deleteCategory != null)
+                    {
+                        deleteCategory(this, new EventArgs());
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi khi xóa");
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa");
+                }
             }
             loadCategoryToComboBox(cbDrinkCategory);
         }
@@ -454,9 +522,8 @@ namespace CoffeeShopManager
         #region Table
         private void btnAddTable_Click(object sender, EventArgs e)
         {
-           
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -472,56 +539,85 @@ namespace CoffeeShopManager
                 MessageBox.Show("Bàn đã tồn tại");
                 return;
             }
-            if (TableDAO.Instance.InsertTable(name))
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm bàn '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Thêm thành công");
-                loadListCategory();
-                if (insertTable != null)
+                if (TableDAO.Instance.InsertTable(name))
                 {
-                    insertTable(this, new EventArgs());
+                    MessageBox.Show("Thêm thành công");
+                    loadListCategory();
+                    if (insertTable != null)
+                    {
+                        insertTable(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm");
                 }
             }
-            else
-            {
-                MessageBox.Show("Có lỗi khi thêm");
-            }
+
             loadListTable();
         }
         private void btnEditTable_Click(object sender, EventArgs e)
         {
-            string name = txtTableName.Text;
-            int idTable = Convert.ToInt32(txtTableID.Text);
-            if (TableDAO.Instance.UpdateTable(idTable, name))
+            string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            if (!containsLetter)
             {
-                MessageBox.Show("Sửa thành công");
-                loadListCategory();
-                if (updateTable != null)
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                return;
+            }
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
+            if (TableDAO.Instance.checkTableExist(name) == 1)
+            {
+                MessageBox.Show("Bàn đã tồn tại");
+                return;
+            }
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn sửa tên bàn thành '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                int idTable = Convert.ToInt32(txtTableID.Text);
+                if (TableDAO.Instance.UpdateTable(idTable, name))
                 {
-                    updateTable(this, new EventArgs());
+                    MessageBox.Show("Sửa thành công");
+                    loadListCategory();
+                    if (updateTable != null)
+                    {
+                        updateTable(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi sửa");
                 }
             }
-            else
-            {
-                MessageBox.Show("Có lỗi khi sửa");
-            }
+
             loadListTable();
         }
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
-            int idTable = Convert.ToInt32(txtTableID.Text);
-            if (TableDAO.Instance.DeleteTable(idTable))
+            string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn xóa bàn '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Xóa thành công");
-                loadListCategory();
-                if (deleteTable != null)
+                int idTable = Convert.ToInt32(txtTableID.Text);
+                if (TableDAO.Instance.DeleteTable(idTable))
                 {
-                    deleteTable(this, new EventArgs());
+                    MessageBox.Show("Xóa thành công");
+                    loadListCategory();
+                    if (deleteTable != null)
+                    {
+                        deleteTable(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa");
                 }
             }
-            else
-            {
-                MessageBox.Show("Có lỗi khi xóa");
-            }
+
             loadListTable();
         }
         private void btnViewTable_Click(object sender, EventArgs e)
@@ -534,7 +630,7 @@ namespace CoffeeShopManager
         private void btnViewAccount_Click(object sender, EventArgs e)
         {
             LoadAccount();
-        }  
+        }
         private void btnAddAcount_Click(object sender, EventArgs e)
         {
             string userName = txtAccountUsername.Text;

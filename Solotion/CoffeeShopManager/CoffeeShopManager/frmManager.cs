@@ -157,7 +157,6 @@ namespace CoffeeShopManager
             frmAdmin.ShowDialog();
         }
 
-
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = 0;
@@ -171,7 +170,6 @@ namespace CoffeeShopManager
             loadDrinkbyCategoryId(id);
 
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Table table = lstvBill.Tag as Table;
@@ -200,7 +198,6 @@ namespace CoffeeShopManager
             ShowBill(table.ID);
             loadTable();
         }
-
         private void btnPay_Click(object sender, EventArgs e)
         {
 

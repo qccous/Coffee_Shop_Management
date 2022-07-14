@@ -19,6 +19,25 @@ namespace CoffeeShopManager
             InitializeComponent();
         }
 
+        #region Method
+        bool Login(string username, string password)
+        {
+            return AccountDAO.Instance.Login(username, password);
+        }
+        #endregion
+
+        #region Events
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Thoát chương trình?", "Thông Báo!", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
@@ -36,22 +55,8 @@ namespace CoffeeShopManager
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu");
             }
         }
+        #endregion
 
-        bool Login(string username, string password)
-        {
-            return AccountDAO.Instance.Login(username, password);
-        }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Thoát chương trình?", "Thông Báo!", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
-            {
-                e.Cancel = true;
-            }
-        }
     }
 }
