@@ -55,7 +55,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(249, 23);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "admin01";
+            this.txtPassword.Text = "admin@@";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername

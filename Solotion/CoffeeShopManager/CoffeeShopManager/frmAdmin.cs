@@ -103,9 +103,14 @@ namespace CoffeeShopManager
         void addAccount(string userName, string displayName, int type)
         {
             bool containsLetter = Regex.IsMatch(userName.Trim(), @"^[a-zA-Z1-9 ]+$");
-            if (String.IsNullOrEmpty(userName))
+            if (String.IsNullOrEmpty(userName.Trim()))
             {
-                MessageBox.Show("Tên không được để trống");
+                MessageBox.Show("Tên đăng nhập không được để trống");
+                return;
+            }
+            if (String.IsNullOrEmpty(displayName.Trim()))
+            {
+                MessageBox.Show("Tên hiển thị không được để trống");
                 return;
             }
             if (!containsLetter)
@@ -118,8 +123,7 @@ namespace CoffeeShopManager
                 MessageBox.Show("Tài khoản đã tồn tại");
                 return;
             }
-
-            if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm tài khoản '{0}'\nTên hiển thị là '{1}'", userName, displayName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm tài khoản '{0}'\nTên hiển thị là '{1}'\nTài khoản sau khi được tạo sẽ không thể đổi 'Tên đăng nhập'", userName, displayName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 if (AccountDAO.Instance.InsertAccountAdmin(userName, displayName, type))
                 {
@@ -134,23 +138,17 @@ namespace CoffeeShopManager
         }
         void updateAccount(string userName, string displayName, int type)
         {
-            bool containsLetter = Regex.IsMatch(userName.Trim(), @"^[a-zA-Z1-9 ]+$");
-            if (String.IsNullOrEmpty(userName))
+            if (String.IsNullOrEmpty(userName.Trim()))
             {
-                MessageBox.Show("Tên không được để trống");
+                MessageBox.Show("Tên đăng nhập không được để trống");
                 return;
             }
-            if (!containsLetter)
+            if (String.IsNullOrEmpty(displayName.Trim()))
             {
-                MessageBox.Show("Định dạng 'Tên tài khoản' không hợp lệ");
+                MessageBox.Show("Tên hiển thị không được để trống");
                 return;
             }
-            if (AccountDAO.Instance.checkAccountExist(txtAccountUsername.Text) == 1)
-            {
-                MessageBox.Show("Tài khoản đã tồn tại");
-                return;
-            }
-            if (MessageBox.Show(string.Format("Bạn có muốn sửa Tên đăng nhập thành: '{0}'\nTên hiển thị thành: '{1}'", userName, displayName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show(string.Format("Bạn có muốn sửa Tên hiển thị thành: '{0}'\n Loại tài khoản thành '{1}'", displayName,type), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 if (AccountDAO.Instance.UpdateAccountAdmin(userName, displayName, type))
                 {
