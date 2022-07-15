@@ -52,7 +52,7 @@ namespace CoffeeShopManager.DAO
         }
         public Boolean UpdateAccountAdmin(string userName, string displayName, int type)
         {
-            string query = string.Format("UPDATE dbo.Account SET  displayName=N'{0}', type = {1} where userName =N'{2}'", displayName, type, userName);
+            string query = string.Format("UPDATE dbo.Account SET displayName=N'{0}', type = {1} where userName =N'{2}'", displayName, type, userName);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }

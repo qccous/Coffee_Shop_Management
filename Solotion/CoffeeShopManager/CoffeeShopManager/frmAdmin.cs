@@ -102,7 +102,12 @@ namespace CoffeeShopManager
         }
         void addAccount(string userName, string displayName, int type)
         {
-            bool containsLetter = Regex.IsMatch(userName, @"^[a-zA-Z]+$");
+            bool containsLetter = Regex.IsMatch(userName.Trim(), @"^[a-zA-Z1-9 ]+$");
+            if (String.IsNullOrEmpty(userName))
+            {
+                MessageBox.Show("Tên không được để trống");
+                return;
+            }
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng 'Tên tài khoản' không hợp lệ");
@@ -113,25 +118,48 @@ namespace CoffeeShopManager
                 MessageBox.Show("Tài khoản đã tồn tại");
                 return;
             }
-            if (AccountDAO.Instance.InsertAccountAdmin(userName, displayName, type))
+
+            if (MessageBox.Show(string.Format("Bạn có thực sự muốn thêm tài khoản '{0}'\nTên hiển thị là '{1}'", userName, displayName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Thêm tài khoản thành công");
-            }
-            else
-            {
-                MessageBox.Show("Thêm tài khoản thất bại!");
+                if (AccountDAO.Instance.InsertAccountAdmin(userName, displayName, type))
+                {
+                    MessageBox.Show("Thêm tài khoản thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Thêm tài khoản thất bại!");
+                }
             }
             LoadAccount();
         }
         void updateAccount(string userName, string displayName, int type)
         {
-            if (AccountDAO.Instance.UpdateAccountAdmin(userName, displayName, type))
+            bool containsLetter = Regex.IsMatch(userName.Trim(), @"^[a-zA-Z1-9 ]+$");
+            if (String.IsNullOrEmpty(userName))
             {
-                MessageBox.Show("Cập nhật tài khoản thành công");
+                MessageBox.Show("Tên không được để trống");
+                return;
             }
-            else
+            if (!containsLetter)
             {
-                MessageBox.Show("Cập nhật khoản thất bại!");
+                MessageBox.Show("Định dạng 'Tên tài khoản' không hợp lệ");
+                return;
+            }
+            if (AccountDAO.Instance.checkAccountExist(txtAccountUsername.Text) == 1)
+            {
+                MessageBox.Show("Tài khoản đã tồn tại");
+                return;
+            }
+            if (MessageBox.Show(string.Format("Bạn có muốn sửa Tên đăng nhập thành: '{0}'\nTên hiển thị thành: '{1}'", userName, displayName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                if (AccountDAO.Instance.UpdateAccountAdmin(userName, displayName, type))
+                {
+                    MessageBox.Show("Cập nhật tài khoản thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật khoản thất bại!");
+                }
             }
             LoadAccount();
         }
@@ -142,13 +170,16 @@ namespace CoffeeShopManager
                 MessageBox.Show("Không thể xóa tài khoản đang được đăng nhập");
                 return;
             }
-            if (AccountDAO.Instance.DeleteAccountAdmin(userName))
+            if (MessageBox.Show(string.Format("Bạn có muốn sửa xóa tài khoản '{0}'", userName), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                MessageBox.Show("Xóa tài khoản thành công");
-            }
-            else
-            {
-                MessageBox.Show("Xóa nhật khoản thất bại!");
+                if (AccountDAO.Instance.DeleteAccountAdmin(userName))
+                {
+                    MessageBox.Show("Xóa tài khoản thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Xóa nhật khoản thất bại!");
+                }
             }
             LoadAccount();
         }
