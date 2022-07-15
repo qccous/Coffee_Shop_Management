@@ -40,20 +40,38 @@ namespace CoffeeShopManager
             string password = txtPassword.Text;
             string newPassword = txtNewPassword.Text;
             string reEnterPassword = txtReEnter.Text;
+            if (String.IsNullOrEmpty(password.Trim()))
+            {
+                MessageBox.Show("Hãy nhập mật khẩu để xác nhận thao tác!");
+                return;
+            }
+            if (String.IsNullOrEmpty(displayName.Trim()))
+            {
+                MessageBox.Show("Tên hiển thị không được để trống");
+                return;
+            }
             if (!newPassword.Equals(reEnterPassword))
             {
                 MessageBox.Show("Mật khẩu mới không trùng khớp!");
             }
             else
             {
-                if (AccountDAO.Instance.UpdateAccountInfo(username,displayName,password,newPassword))
+                if (MessageBox.Show(string.Format("Bạn có thực sự muốn cập nhật các thông tin trên?"), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    MessageBox.Show("Cập nhật thành công");
+                    if (AccountDAO.Instance.UpdateAccountInfo(username, displayName, password, newPassword))
+                    {
+                        MessageBox.Show("Cập nhật thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hãy điền đúng thông tin");
+                    }
+                    changeAccountInfo(LoginAccount);
+                    txtPassword.Clear();
+                    txtNewPassword.Clear();
+                    txtReEnter.Clear();
                 }
-                else
-                {
-                    MessageBox.Show("Hãy điền đúng thông tin");
-                }
+
             }
         }
         #endregion
@@ -67,7 +85,7 @@ namespace CoffeeShopManager
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             updateAccountInfo();
-            
+
         }
         #endregion
 
