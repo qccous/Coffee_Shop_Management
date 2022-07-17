@@ -283,7 +283,7 @@ namespace CoffeeShopManager
             string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
             string price1 = txtPrice.Text.Trim().Replace(" ", String.Empty);
             bool isNumber = double.TryParse(price1, out double result);
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Tên không được để trống");
@@ -336,7 +336,7 @@ namespace CoffeeShopManager
             string name = Regex.Replace(txtDrinkName.Text.Trim(), " {2,}", " ");
             string price1 = txtPrice.Text.Trim().Replace(" ", String.Empty);
             bool isNumber = double.TryParse(price1, out double result);
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (String.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Tên không được để trống");
@@ -447,7 +447,7 @@ namespace CoffeeShopManager
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -485,7 +485,7 @@ namespace CoffeeShopManager
         private void btnEditCategory_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtCategoryName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -552,13 +552,13 @@ namespace CoffeeShopManager
         private void btnAddTable_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
                 return;
             }
-            if (String.IsNullOrEmpty(name))
+            if (String.IsNullOrEmpty(name.Trim()))
             {
                 MessageBox.Show("Tên không được để trống");
                 return;
@@ -590,7 +590,7 @@ namespace CoffeeShopManager
         private void btnEditTable_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
-            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z1-9 ]+$");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
