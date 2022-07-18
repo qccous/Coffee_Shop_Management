@@ -173,9 +173,9 @@ namespace CoffeeShopManager
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Table table = lstvBill.Tag as Table;
-            if (nbDrinkCount.Value < 0)
+            if (lstvBill.Items.Count == 0 && nbDrinkCount.Value < 0)
             {
-                MessageBox.Show("Không thể bớt món chưa được thêm");
+                MessageBox.Show("Bill đang trống, không thể bớt món");
                 return;
             }
             if (table == null)
