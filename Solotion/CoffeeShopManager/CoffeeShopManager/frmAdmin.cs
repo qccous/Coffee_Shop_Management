@@ -138,6 +138,11 @@ namespace CoffeeShopManager
         }
         void updateAccount(string userName, string displayName, int type)
         {
+            if (loginAccount.UserName.Equals(userName) && nbAccountType.Value == 0)
+            {
+                MessageBox.Show("Không thể thay đổi quyền !");
+                return ;
+            }
             if (String.IsNullOrEmpty(userName.Trim()))
             {
                 MessageBox.Show("Tên đăng nhập không được để trống");
@@ -232,8 +237,12 @@ namespace CoffeeShopManager
             tableList.DataSource = TableDAO.Instance.loadTableList();
             txtTableID.DataBindings.Clear();
             txtTableName.DataBindings.Clear();
+            txtStatustable.DataBindings.Clear();
             txtTableID.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "ID", true, DataSourceUpdateMode.Never));
             txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
+            txtStatustable.DataBindings.Add(new Binding ("Text", dgvTable.DataSource,"Status", true, DataSourceUpdateMode.Never));
+
+            
         }
         #endregion
         #endregion
@@ -591,6 +600,7 @@ namespace CoffeeShopManager
         {
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
             bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
+            
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -629,6 +639,11 @@ namespace CoffeeShopManager
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
+            if (txtStatustable.Text.Equals("Có người"))
+            {
+                MessageBox.Show("Không đuổi khách !");
+                return;
+            }
             if (MessageBox.Show(string.Format("Bạn có thực sự muốn xóa bàn '{0}'", name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 int idTable = Convert.ToInt32(txtTableID.Text);
@@ -769,5 +784,10 @@ namespace CoffeeShopManager
         #endregion
 
         #endregion
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -103,6 +103,8 @@
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
+            this.txtStatustable = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -592,6 +594,8 @@
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.txtStatustable);
+            this.panel9.Controls.Add(this.label4);
             this.panel9.Controls.Add(this.txtTableName);
             this.panel9.Controls.Add(this.lbTableName);
             this.panel9.Controls.Add(this.txtTableID);
@@ -600,6 +604,7 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(426, 488);
             this.panel9.TabIndex = 10;
+            this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
             // txtTableName
             // 
@@ -894,6 +899,24 @@
             this.btnAddAcount.UseVisualStyleBackColor = true;
             this.btnAddAcount.Click += new System.EventHandler(this.btnAddAcount_Click);
             // 
+            // txtStatustable
+            // 
+            this.txtStatustable.Location = new System.Drawing.Point(155, 133);
+            this.txtStatustable.Name = "txtStatustable";
+            this.txtStatustable.ReadOnly = true;
+            this.txtStatustable.Size = new System.Drawing.Size(258, 23);
+            this.txtStatustable.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(20, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 25);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Status";
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1018,5 +1041,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nbAccountType;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.TextBox txtStatustable;
+        private System.Windows.Forms.Label label4;
     }
 }
