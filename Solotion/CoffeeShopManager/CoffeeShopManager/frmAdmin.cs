@@ -46,6 +46,10 @@ namespace CoffeeShopManager
             loadListTable();
             addFinalPriceCol();
         }
+        void loadListBillOrderByTable()
+        {
+            dgvBill.DataSource = BillDAO.Instance.getListBillOrderByTable();
+        }
         public static string convertToUnSign(string s)
         {
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
@@ -141,7 +145,7 @@ namespace CoffeeShopManager
             if (loginAccount.UserName.Equals(userName) && nbAccountType.Value == 0)
             {
                 MessageBox.Show("Không thể thay đổi quyền !");
-                return ;
+                return;
             }
             if (String.IsNullOrEmpty(userName.Trim()))
             {
@@ -153,7 +157,7 @@ namespace CoffeeShopManager
                 MessageBox.Show("Tên hiển thị không được để trống");
                 return;
             }
-            if (MessageBox.Show(string.Format("Bạn có muốn sửa Tên hiển thị thành: '{0}'\n Loại tài khoản thành '{1}'", displayName,type), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show(string.Format("Bạn có muốn sửa Tên hiển thị thành: '{0}'\n Loại tài khoản thành '{1}'", displayName, type), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 if (AccountDAO.Instance.UpdateAccountAdmin(userName.Trim(), displayName, type))
                 {
@@ -240,9 +244,9 @@ namespace CoffeeShopManager
             txtStatustable.DataBindings.Clear();
             txtTableID.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "ID", true, DataSourceUpdateMode.Never));
             txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name", true, DataSourceUpdateMode.Never));
-            txtStatustable.DataBindings.Add(new Binding ("Text", dgvTable.DataSource,"Status", true, DataSourceUpdateMode.Never));
+            txtStatustable.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Status", true, DataSourceUpdateMode.Never));
 
-            
+
         }
         #endregion
         #endregion
@@ -258,7 +262,6 @@ namespace CoffeeShopManager
         #region Bill
         private void btnSearchBill_Click(object sender, EventArgs e)
         {
-
             loadListBillByDate(dtpFromDate.Value, dtpEndDate.Value);
             double sum = DgvSum(5);
             dgvBill.Rows[0].Cells[0].Value = sum.ToString("c");
@@ -447,11 +450,37 @@ namespace CoffeeShopManager
         }
         private void btnSearchDrink_Click(object sender, EventArgs e)
         {
+            txtDrinkID.Clear();
+            txtDrinkName.Clear();
+            cbDrinkCategory.SelectedItem = null;
+            txtPrice.Clear();
+            string name = Regex.Replace(txtSearchDrinkName.Text.Trim(), " {2,}", " ");
+            bool containsLetter = Regex.IsMatch(convertToUnSign(name.Trim()).ToLower(), @"^[a-zA-Z0-9 ]+$");
             drinkList.DataSource = SearchDrinkByName(txtSearchDrinkName.Text);
+            if (dgvDrink.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có tên trùng với từ khóa");
+                loadListDrink();
+                return;
+            }
+            if (String.IsNullOrEmpty(name.Trim()))
+            {
+                MessageBox.Show("Tên không được để trống");
+                loadListDrink();
+                return;
+            }
+            if (!containsLetter)
+            {
+                MessageBox.Show("Định dạng tên không hợp lệ");
+                loadListDrink();
+                return;
+            }
+            
+
         }
 
         #endregion
-        
+
         #region Category
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
@@ -600,7 +629,7 @@ namespace CoffeeShopManager
         {
             string name = Regex.Replace(txtTableName.Text.Trim(), " {2,}", " ");
             bool containsLetter = Regex.IsMatch(convertToUnSign(name).ToLower(), @"^[a-zA-Z0-9 ]+$");
-            
+
             if (!containsLetter)
             {
                 MessageBox.Show("Định dạng tên không hợp lệ");
@@ -788,6 +817,13 @@ namespace CoffeeShopManager
         private void panel9_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnCount_Click(object sender, EventArgs e)
+        {
+            loadListBillOrderByTable();
+            dgvBill.Columns.RemoveAt(0);
+            dgvBill.Columns[2].DefaultCellStyle.Format = "c";
         }
     }
 }

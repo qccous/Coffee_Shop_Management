@@ -59,5 +59,9 @@ namespace CoffeeShopManager.DAO
         {
             DataTable data = DataProvider.Instance.ExecuteQuery(" DELETE dbo.Bill WHERE idTable = " + idTable);
         }
+        public DataTable getListBillOrderByTable()
+        {
+            return DataProvider.Instance.ExecuteQuery("SELECT  idTable,COUNT(*)  AS [So lan dat],SUM(totalPrice) AS [Tong cuoi] FROM dbo.Bill  GROUP BY idTable ORDER BY [So lan dat]");
+        }
     }
 }

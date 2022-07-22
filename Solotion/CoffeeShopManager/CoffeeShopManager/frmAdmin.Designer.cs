@@ -74,6 +74,8 @@
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.txtStatustable = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtTableName = new System.Windows.Forms.TextBox();
             this.lbTableName = new System.Windows.Forms.Label();
             this.txtTableID = new System.Windows.Forms.TextBox();
@@ -103,8 +105,7 @@
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
-            this.txtStatustable = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnCount = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -161,6 +162,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnCount);
             this.panel2.Controls.Add(this.lbEnd);
             this.panel2.Controls.Add(this.lbFrom);
             this.panel2.Controls.Add(this.btnSearchBill);
@@ -194,7 +196,7 @@
             // btnSearchBill
             // 
             this.btnSearchBill.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSearchBill.Location = new System.Drawing.Point(687, 9);
+            this.btnSearchBill.Location = new System.Drawing.Point(663, 9);
             this.btnSearchBill.Name = "btnSearchBill";
             this.btnSearchBill.Size = new System.Drawing.Size(73, 32);
             this.btnSearchBill.TabIndex = 2;
@@ -606,6 +608,24 @@
             this.panel9.TabIndex = 10;
             this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
+            // txtStatustable
+            // 
+            this.txtStatustable.Location = new System.Drawing.Point(155, 133);
+            this.txtStatustable.Name = "txtStatustable";
+            this.txtStatustable.ReadOnly = true;
+            this.txtStatustable.Size = new System.Drawing.Size(258, 23);
+            this.txtStatustable.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(20, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 25);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Status";
+            // 
             // txtTableName
             // 
             this.txtTableName.Location = new System.Drawing.Point(155, 81);
@@ -899,23 +919,16 @@
             this.btnAddAcount.UseVisualStyleBackColor = true;
             this.btnAddAcount.Click += new System.EventHandler(this.btnAddAcount_Click);
             // 
-            // txtStatustable
+            // btnCount
             // 
-            this.txtStatustable.Location = new System.Drawing.Point(155, 133);
-            this.txtStatustable.Name = "txtStatustable";
-            this.txtStatustable.ReadOnly = true;
-            this.txtStatustable.Size = new System.Drawing.Size(258, 23);
-            this.txtStatustable.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(20, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 25);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Status";
+            this.btnCount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCount.Location = new System.Drawing.Point(753, 9);
+            this.btnCount.Name = "btnCount";
+            this.btnCount.Size = new System.Drawing.Size(73, 32);
+            this.btnCount.TabIndex = 5;
+            this.btnCount.Text = "Đếm";
+            this.btnCount.UseVisualStyleBackColor = true;
+            this.btnCount.Click += new System.EventHandler(this.btnCount_Click);
             // 
             // frmAdmin
             // 
@@ -1043,5 +1056,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.TextBox txtStatustable;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnCount;
     }
 }
